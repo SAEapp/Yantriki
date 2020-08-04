@@ -6,12 +6,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.Animator;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
@@ -126,10 +130,22 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onTick(long millisUntilFinished) {
                 counter.setText(String.valueOf(millisUntilFinished/1000));
+
             }
 
             @Override
             public void onFinish() {
+                Vibrator v = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+                //Vibrate for 500 milliseconds
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                {
+                    v.vibrate(VibrationEffect.createOneShot(500,VibrationEffect.DEFAULT_AMPLITUDE));
+
+                }else{
+                    //deprecated inAPI 26
+                    v.vibrate(500);
+                }
+
                 changeQuestion();
             }
         };
