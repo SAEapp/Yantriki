@@ -22,7 +22,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button startbtn,logoutbtn;
+    private Button startbtn,logoutbtn,profilebtn;
     private FirebaseFirestore firestore;
     public static List<String> levelsList = new ArrayList<>();
     private Dialog loading;
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         startbtn = findViewById(R.id.start);
         logoutbtn = findViewById(R.id.button);
+        profilebtn = findViewById(R.id.profile_button);
 
         loading = new Dialog(MainActivity.this);
         loading.setContentView(R.layout.loading_progressbar);
@@ -63,6 +64,16 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 }.start();
+
+            }
+        });
+
+        profilebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this,Profile.class);
+                startActivity(intent);
 
             }
         });
