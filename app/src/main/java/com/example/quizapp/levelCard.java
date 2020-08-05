@@ -47,6 +47,15 @@ public class levelCard extends AppCompatActivity {
         setContentView(R.layout.activity_cardlevel);
 
         final Button start= (Button) findViewById(R.id.start);
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(levelCard.this, SetsActivity.class);
+                intent.putExtra("Level", "Beginner");
+                intent.putExtra("Level_ID", 1);
+                startActivity(intent);
+            }
+        });
 
 
 

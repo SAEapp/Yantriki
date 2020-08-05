@@ -46,7 +46,7 @@ public class LeaderBoard extends AppCompatActivity {
 
 
         mFirestore= FirebaseFirestore.getInstance();
-        Query leader= mFirestore.collection("ScoreBoard").orderBy("score", Query.Direction.DESCENDING);
+        Query leader= mFirestore.collection("ScoreBoard").orderBy("scorenum", Query.Direction.DESCENDING);
         leader.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
