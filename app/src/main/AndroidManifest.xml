@@ -27,6 +27,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+        <activity android:name=".LeaderBoard"/>
+        <activity android:name=".levelCard"/>
+
 
         <meta-data
             android:name="preloaded_fonts"

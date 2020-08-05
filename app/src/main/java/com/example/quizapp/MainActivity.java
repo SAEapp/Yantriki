@@ -35,6 +35,14 @@ public class MainActivity extends AppCompatActivity {
         logoutbtn = findViewById(R.id.button);
         profilebtn = findViewById(R.id.profile_button);
 
+        Button leaderboard= findViewById(R.id.leaderboard);
+        leaderboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, LeaderBoard.class));
+            }
+        });
+
         loading = new Dialog(MainActivity.this);
         loading.setContentView(R.layout.loading_progressbar);
         loading.setCancelable(false);
@@ -101,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
                             levelsList.add(levelName);
                         }
-                        Intent intent = new Intent(MainActivity.this,LevelsActivity.class);
+                        Intent intent = new Intent(MainActivity.this,levelCard.class);
                         startActivity(intent);
                     }
                     else
