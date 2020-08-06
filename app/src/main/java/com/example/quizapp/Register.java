@@ -98,6 +98,7 @@ public class Register extends AppCompatActivity {
                                     Log.d(TAG, "onFailure: " + e.toString());
                                 }
                             });
+                            leaderboard(userID,fullName);
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         }else{
                             Toast.makeText(Register.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -113,5 +114,23 @@ public class Register extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), Login.class));
             }
         });
+    }
+
+    public void leaderboard(String UserID, String fname){
+
+        DocumentReference Reference = fStore.collection("ScoreBoard").document(userID);
+        HashMap<String, Object> LBuser= new HashMap<>();
+        LBuser.put("name", fname);
+        int userscore=0;
+        LBuser.put("scorenum", userscore);
+        LBuser.put("score", Integer.toString(userscore));
+        Reference.set(LBuser).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.i("LeaderBoard Data", "onSuccess: DataUpdated");
+            }
+
+        });
+
     }
 }

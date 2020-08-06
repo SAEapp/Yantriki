@@ -20,17 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/listProfile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/listRank"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.534"
-                app:srcCompat="@mipmap/profile" />
-
             <TextView
                 android:id="@+id/listName"
                 android:layout_width="wrap_content"
@@ -39,7 +28,7 @@
                 android:text="Name"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/listProfile"
+                app:layout_constraintStart_toEndOf="@+id/listRank"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.49" />
 
@@ -58,8 +47,8 @@
 
             <TextView
                 android:id="@+id/listRank"
-                android:layout_width="36dp"
-                android:layout_height="50dp"
+                android:layout_width="23dp"
+                android:layout_height="49dp"
                 android:layout_marginStart="16dp"
                 android:text="1"
                 android:textSize="36sp"
