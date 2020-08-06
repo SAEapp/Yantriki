@@ -10,6 +10,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -48,6 +50,23 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
     int score =0;
 
     private FirebaseFirestore db ;
+
+///////////////////////////////something for the future//////////////////////////////////////
+//    @Override
+//    protected void onResume() {
+//        mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+//                SensorManager.SENSOR_DELAY_NORMAL);
+//        super.onResume();
+//        cameraView.start();                                                                          //to start camera
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        mSensorManager.unregisterListener(mSensorListener);
+//        super.onPause();
+//        cameraView.stop();  }                                                                        //to stop camera (when the activity gets paused)
+
+/////////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -282,6 +301,20 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
             }
         }, 2000);
     }
+
+//    /**To handle orientation changes
+//     * */
+//    @Override
+//    protected void onSaveInstanceState(@NonNull Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        outState.putString("Display Output",display.getText().toString());   //save textView output in our outstate bundle
+//    }
+//
+//    @Override
+//    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+//        super.onRestoreInstanceState(savedInstanceState);
+//        display.setText(savedInstanceState.getString("Display Output"));   //receiving and displaying the value from our saved instance state bundle
+//    }
 
     @Override
     public void onBackPressed() {

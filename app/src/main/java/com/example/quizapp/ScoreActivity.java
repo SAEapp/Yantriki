@@ -3,10 +3,12 @@ package com.example.quizapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.contentcapture.DataRemovalRequest;
 import android.widget.Button;
 import android.widget.TextView;
@@ -37,24 +39,25 @@ import static com.example.quizapp.LevellGridAdapter.levelid;
 import static com.example.quizapp.SetsAdapter.setId;
 
 public class ScoreActivity extends AppCompatActivity {
-    private TextView score;
+    private TextView new_score,bestScore;
     private Button donebtn;
     private FirebaseFirestore db;
     private FirebaseAuth fAuth;
     private FirebaseUser user;
     private int fScore;
-    private int total_score;
     private int totalq;
-    private String high_score;
+    private int high_score;
     private boolean is_first_try;
-//    private Integer Databasescore;
+    private Dialog loading;
     private String userID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
 
-        score = findViewById(R.id.new_score);
+        new_score = findViewById(R.id.new_score);
+        bestScore = findViewById(R.id.best_score);
         donebtn = findViewById(R.id.sa_done);
 
         fAuth = FirebaseAuth.getInstance();
@@ -65,7 +68,57 @@ public class ScoreActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         fScore = bundle.getInt("Score");
         totalq = bundle.getInt("TotalQ");
-        score.setText(String.valueOf(fScore) + "/" + String.valueOf(totalq));
+        new_score.setText("Score : "+String.valueOf(fScore) + "/" + String.valueOf(totalq));
+
+        loading = new Dialog(ScoreActivity.this);
+        loading.setContentView(R.layout.loading_progressbar);
+        loading.setCancelable(false);
+        loading.getWindow().setBackgroundDrawableResource(R.drawable.progress_background);
+        loading.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        new Thread() {
+            public void run() {
+                // sleep(3000);
+
+                updatePrams();
+
+
+            }
+        }.start();
+
+        bestScore.setText("Best : "+String.valueOf(high_score) + "/" + String.valueOf(totalq));
+
+
+        new Thread() {
+            public void run() {
+                // sleep(3000);
+                db.collection("users").document(userID)
+                        .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        int val = Integer.parseInt(documentSnapshot.getString("total_score"));
+                        if(is_first_try){
+                            db.collection("users").document(userID).update("total_score",String.valueOf(val+fScore));
+                        }
+                    }
+                });
+
+
+            }
+        }.start();
+
+
+        donebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ScoreActivity.this,MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+
+    private void updatePrams() {
         final Map<String, Object> quizParams = new HashMap<>();
         quizParams.put("best_score", "0");
         quizParams.put("first_try", "1");
@@ -77,6 +130,7 @@ public class ScoreActivity extends AppCompatActivity {
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                 if (documentSnapshot.exists()) {
                     if (fScore > Integer.parseInt(documentSnapshot.getString("best_score"))) {
+                        high_score = fScore;
                         Map<String, Object> updatedParams = new HashMap<>();
                         updatedParams.put("best_score", String.valueOf(fScore));
                         updatedParams.put("first_try", "0");
@@ -86,8 +140,10 @@ public class ScoreActivity extends AppCompatActivity {
                                 Toast.makeText(ScoreActivity.this, "Params Updated", Toast.LENGTH_SHORT).show();
                             }
                         });
-                        is_first_try = false;
-                        high_score = documentSnapshot.getString("best_score");
+                        is_first_try = false ;
+
+                    } else {
+                        high_score = Integer.parseInt(documentSnapshot.getString("best_score"));
                     }
                 } else {
                     db.collection("users").document(userID).collection("quize_scores")
@@ -95,79 +151,6 @@ public class ScoreActivity extends AppCompatActivity {
                     is_first_try = true;
                     Log.d("tag", "Created Document");
                 }
-            }
-        });
-        if(is_first_try) {
-        final DocumentReference documentReference = db.collection("users").document(userID);
-        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                if (documentSnapshot.exists()) {
-                    total_score = Integer.parseInt(documentSnapshot.getString("total_score"));
-                    total_score += fScore;
-                    Map<String, Object> updated = new HashMap<>();
-                    updated.put("fName", documentSnapshot.getString("fName"));
-                    updated.put("email", documentSnapshot.getString("email"));
-                    updated.put("phone", documentSnapshot.getString("phone"));
-                    updated.put("total_score", String.valueOf(total_score));
-                    documentReference.update(updated).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(ScoreActivity.this, "Score Updated", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-
-                } else {
-                    Log.d("tag", "onEvent: Document does not exists");
-                }
-            }
-        });
-    }
-
-
-
-
-
-
-
-//        donebtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//
-//                db.collection("LeaderBoard").document(userID).get()
-//                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                                if(task.isSuccessful()){
-//                                    DocumentSnapshot document= task.getResult();
-//                                    if(document.exists()){
-//                                        Databasescore= (Integer) document.get("scorenum");
-//                                        Log.i("Retrieving score", "onComplete:"+datascore);
-//                                    }
-//                                }
-//                            }
-//                        });
-//
-//                Databasescore=Databasescore+scores;
-//                HashMap<String, Object> userScore= new HashMap<>();
-//                userScore.put("score", Databasescore.toString());
-//                userScore.put("scorenum", Databasescore);
-//                db.collection("LeaderBoard").document(userID).set(userScore);
-//
-//                Intent intent = new Intent(ScoreActivity.this,MainActivity.class);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
-
-        donebtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ScoreActivity.this,MainActivity.class);
-                startActivity(intent);
-                finish();
             }
         });
     }
