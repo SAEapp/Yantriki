@@ -207,7 +207,7 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
                                     break;
                             }
                             if(viewnum != 0)
-                                ((Button)v).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#673AB7")));
+                                ((Button)v).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#BD4ED5")));
 
                             playAnim(v,1,viewnum);
                         }

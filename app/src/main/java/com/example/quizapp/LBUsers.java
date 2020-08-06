@@ -2,32 +2,28 @@ package com.example.quizapp;
 
 public class LBUsers {
 
-    String name, score;
+    String fName, total_score,phone,email;
 
-    public LBUsers(String name, String score) {
-        this.name = name;
-        this.score = score;
+    public LBUsers() {}
+    public LBUsers(String fName, String total_score) {
+        this.fName = fName;
+        this.total_score = total_score;
     }
 
-    public String getName() {
-        return name;
+    public String getfName() {
+        return fName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getTotal_score() {
+        return total_score;
     }
 
-    public String getScore() {
-        return score;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setScore(String score) {
-        this.score = score;
+    public String getEmail() {
+        return email;
     }
-
-    public LBUsers(){
-
-    }
-
 
 }

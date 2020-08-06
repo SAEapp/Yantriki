@@ -58,11 +58,11 @@ public class Profile extends AppCompatActivity {
         resetPassLocal = findViewById(R.id.change_passwordButton);
         log_outbtn = findViewById(R.id.logoutButton);
 
-        /*Toolbar toolbar = findViewById(R.id.toolbar2);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Profile");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);*/
+//        Toolbar toolbar = findViewById(R.id.toolbar2);
+//        setSupportActionBar(toolbar);
+//        getSupportActionBar().setTitle("Profile");
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
@@ -80,7 +80,7 @@ public class Profile extends AppCompatActivity {
         user = fAuth.getCurrentUser();
 
         DocumentReference documentReference = fStore.collection("users").document(userId);
-        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+        documentReference.addSnapshotListener(this,  new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                 if(documentSnapshot.exists()){

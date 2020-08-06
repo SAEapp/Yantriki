@@ -7,7 +7,6 @@
     tools:context=".Profile">
 
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="478dp"
