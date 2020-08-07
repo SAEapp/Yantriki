@@ -86,6 +86,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),Register.class));
+                overridePendingTransition(android.R.anim.fade_in, R.anim.zoom);
             }
         });
         forgotTextLink.setOnClickListener(new View.OnClickListener() {

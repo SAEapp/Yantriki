@@ -35,8 +35,8 @@ import java.util.Objects;
 
 import javax.annotation.Nullable;
 
-import static com.example.quizapp.LevellGridAdapter.levelid;
-import static com.example.quizapp.SetsAdapter.setId;
+import static com.example.quizapp.newSetActivity.levelid;
+import static com.example.quizapp.QuestionsActivity.setId;
 
 public class ScoreActivity extends AppCompatActivity {
     private TextView new_score,bestScore;

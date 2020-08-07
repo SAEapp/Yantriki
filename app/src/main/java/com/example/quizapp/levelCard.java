@@ -50,7 +50,7 @@ public class levelCard extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(levelCard.this, SetsActivity.class);
+                Intent intent= new Intent(levelCard.this, newSetActivity.class);
                 intent.putExtra("Level", "Beginner");
                 intent.putExtra("Level_ID", 1);
                 startActivity(intent);
@@ -104,7 +104,7 @@ public class levelCard extends AppCompatActivity {
                 start.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent i= new Intent(levelCard.this, SetsActivity.class);
+                        Intent i= new Intent(levelCard.this, newSetActivity.class);
                         if(position==0) {
                             i.putExtra("Level", "Beginner");
                             i.putExtra("Level_ID", position+1);

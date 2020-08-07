@@ -41,8 +41,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.quizapp.SetsActivity.level_id;
-import static com.example.quizapp.SetsActivity.time_lim;
+import static com.example.quizapp.newSetActivity.time_lim;
 
 public class QuestionsActivity extends AppCompatActivity implements View.OnClickListener {
     private SoundPool soundPool;
@@ -50,13 +49,14 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
     private TextView questiondis,qnumdis;
     private TextView counter;
     private int qnum;
-    private int set_num;
+    private int set_num,level_id;
     private Dialog loading;
     private Button opt1,opt2,opt3,opt4;
     private List<Questions> questionsList;
     CountDownTimer countDownTimer;
     MediaPlayer mediaPlayer;
     int score =0;
+    public static int setId;
 
     private FirebaseFirestore db ;
 
@@ -118,6 +118,8 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
 
 
         set_num = getIntent().getIntExtra("set_id",1);
+        setId=set_num;
+        level_id=getIntent().getIntExtra("level",1);
 
         opt1.setOnClickListener(this);
         opt2.setOnClickListener(this);
