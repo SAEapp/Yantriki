@@ -15,7 +15,7 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity2 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity2 extends AppCompatActivity {
 
 
     FragmentManager fragmentManager;
@@ -34,7 +34,7 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Dashboard");
         navigationView = findViewById(R.id.nested);
-        navigationView.setNavigationItemSelectedListener(this);
+
 
         drawer = findViewById(R.id.drawer);
         toggle = new ActionBarDrawerToggle(this,drawer,toolbar,R.string.open,R.string.close);
@@ -49,9 +49,47 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
         fragmentTransaction.add(R.id.fragmentContainer,new HomeFragment());
         fragmentTransaction.commit();
 
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                drawer.closeDrawer(GravityCompat.START);
+                if(item.getItemId() == R.id.home){
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragmentContainer,new HomeFragment());
+                    fragmentTransaction.commit();
+                    // loadFragment(new MainFragment());
+                }
+                if(item.getItemId() == R.id.account){
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragmentContainer,new ProfileFragment());
+                    fragmentTransaction.commit();
+                    //loadFragment(new SecondFragment());
+                }
+                if(item.getItemId() == R.id.leaderboard){
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragmentContainer,new LeaderboardFragment());
+                    fragmentTransaction.commit();
+                    //loadFragment(new MainFragment());
+                }
+                if(item.getItemId() == R.id.settings){
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragmentContainer,new SettingsFragment());
+                    fragmentTransaction.commit();
+                    //loadFragment(new MainFragment());
+                }
+                return true;
+
+            }
+
+        });
     }
 
-    @Override
+    /*@Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         drawer.closeDrawer(GravityCompat.START);
         if(item.getItemId() == R.id.home){
@@ -84,4 +122,6 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
         }
         return true;
     }
+    */
+
 }

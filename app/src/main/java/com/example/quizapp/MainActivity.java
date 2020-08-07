@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         leaderboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, LeaderBoard.class));
+                startActivity(new Intent(MainActivity.this, MainActivity2.class));
             }
         });
 

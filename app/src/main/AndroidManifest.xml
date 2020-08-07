@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Profile"></activity>
+        <activity android:name=".MainActivity2"/>
         <activity android:name=".newSetActivity"/>
         <activity android:name=".EditProfile" />
         <activity android:name=".ScoreActivity" />
