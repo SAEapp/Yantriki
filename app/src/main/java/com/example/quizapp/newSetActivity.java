@@ -138,5 +138,14 @@ public class newSetActivity extends AppCompatActivity implements NsetsAdapter.On
         intent.putExtra("level",levelid);
         //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+        finish();
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(newSetActivity.this,levelCard.class);
+        startActivity(intent);
+        finish();
+    }
+
 }
