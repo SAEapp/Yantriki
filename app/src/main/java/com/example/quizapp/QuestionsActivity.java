@@ -10,7 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
- SoundEffects
+
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -18,7 +18,7 @@ import android.media.SoundPool;
 
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
- new_master
+
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
