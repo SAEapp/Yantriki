@@ -29,13 +29,14 @@ import java.util.List;
 public class newSetActivity extends AppCompatActivity implements NsetsAdapter.OnNoteListener{
 
     private String levelName;
-    public static int level_id;
+    public static int levelid;
     private RecyclerView setRecycler;
     private FirebaseFirestore mFirestore;
     private Dialog loading;
     private List<setslist> sets;
     private NsetsAdapter Adapter;
     public static long time_lim;
+
 
 
     @Override
@@ -47,7 +48,7 @@ public class newSetActivity extends AppCompatActivity implements NsetsAdapter.On
 
         Bundle bundle = getIntent().getExtras();
         levelName = bundle.getString("Level");
-        level_id = bundle.getInt("Level_ID",1);
+        levelid = bundle.getInt("Level_ID",1);
 
         Toolbar toolbar = findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
@@ -73,7 +74,7 @@ public class newSetActivity extends AppCompatActivity implements NsetsAdapter.On
 
         mFirestore=FirebaseFirestore.getInstance();
 
-        mFirestore.collection("Quizes").document("Level-"+ String.valueOf(level_id))
+        mFirestore.collection("Quizes").document("Level-"+ String.valueOf(levelid))
                 .collection("sets").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -91,7 +92,7 @@ public class newSetActivity extends AppCompatActivity implements NsetsAdapter.On
             }
         });
 
-        mFirestore.collection("Quizes").document("Level-"+ String.valueOf(level_id))
+        mFirestore.collection("Quizes").document("Level-"+ String.valueOf(levelid))
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -134,7 +135,7 @@ public class newSetActivity extends AppCompatActivity implements NsetsAdapter.On
         Intent intent = new Intent(newSetActivity.this,QuestionsActivity.class);
         Log.i("QuestionIntent", "onNoteClick:"+position);
         intent.putExtra("set_id",position+1);
-        intent.putExtra("level",level_id);
+        intent.putExtra("level",levelid);
         //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }

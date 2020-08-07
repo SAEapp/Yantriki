@@ -27,10 +27,10 @@ public class LBrecyclerAdapter extends RecyclerView.Adapter<LBrecyclerAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String Name= lbUsersList.get(position).getName();
+        String Name= lbUsersList.get(position).getfName();
         holder.setname(Name);
 
-        String Score= lbUsersList.get(position).getScore();
+        String Score= lbUsersList.get(position).getTotal_score();
 
         holder.setscore(Score);
 
@@ -43,7 +43,7 @@ public class LBrecyclerAdapter extends RecyclerView.Adapter<LBrecyclerAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return lbUsersList.size();
+        return Math.min(50,lbUsersList.size());
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

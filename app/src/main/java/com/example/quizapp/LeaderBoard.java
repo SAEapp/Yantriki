@@ -1,7 +1,9 @@
 package com.example.quizapp;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ViewGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,6 +28,7 @@ public class LeaderBoard extends AppCompatActivity {
     private RecyclerView LeaderBoard;
     private List<LBUsers> lbUsersList;
     private LBrecyclerAdapter lBrecyclerAdapter;
+    private Dialog loading;
 
 
     @Override
@@ -35,7 +38,12 @@ public class LeaderBoard extends AppCompatActivity {
         lbUsersList= new ArrayList<>();
         lBrecyclerAdapter= new LBrecyclerAdapter(lbUsersList);
 
-
+        loading = new Dialog(LeaderBoard.this);
+        loading.setContentView(R.layout.loading_progressbar);
+        loading.setCancelable(false);
+        loading.getWindow().setBackgroundDrawableResource(R.drawable.progress_background);
+        loading.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        loading.show();
 
 
 
@@ -47,7 +55,7 @@ public class LeaderBoard extends AppCompatActivity {
 
 
         mFirestore= FirebaseFirestore.getInstance();
-        Query leader= mFirestore.collection("ScoreBoard").orderBy("scorenum", Query.Direction.DESCENDING);
+        Query leader= mFirestore.collection("users").orderBy("total_score", Query.Direction.DESCENDING);
         leader.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -62,6 +70,7 @@ public class LeaderBoard extends AppCompatActivity {
 
 
                 }
+                loading.cancel();
             }
         });
 

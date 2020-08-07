@@ -10,6 +10,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
+
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
+
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -35,7 +44,8 @@ import java.util.List;
 import static com.example.quizapp.newSetActivity.time_lim;
 
 public class QuestionsActivity extends AppCompatActivity implements View.OnClickListener {
-
+    private SoundPool soundPool;
+    private int done,insight,wrongans,correctans;
     private TextView questiondis,qnumdis;
     private TextView counter;
     private int qnum;
@@ -44,15 +54,53 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
     private Button opt1,opt2,opt3,opt4;
     private List<Questions> questionsList;
     CountDownTimer countDownTimer;
+    MediaPlayer mediaPlayer;
     int score =0;
+    public static int setId;
 
     private FirebaseFirestore db ;
+
+///////////////////////////////something for the future//////////////////////////////////////
+//    @Override
+//    protected void onResume() {
+//        mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+//                SensorManager.SENSOR_DELAY_NORMAL);
+//        super.onResume();
+//        cameraView.start();                                                                          //to start camera
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        mSensorManager.unregisterListener(mSensorListener);
+//        super.onPause();
+//        cameraView.stop();  }                                                                        //to stop camera (when the activity gets paused)
+
+/////////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questions);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+        {
+            AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .build();
+            soundPool = new SoundPool.Builder()
+                    .setMaxStreams(6)
+                    .setAudioAttributes(audioAttributes)
+                    .build();
+        }else
+        {
+            soundPool = new SoundPool(6, AudioManager.STREAM_MUSIC,0);
+
+        }
+        done = soundPool.load(this,R.raw.done,1);
+        insight = soundPool.load(this,R.raw.insight,1);
+        wrongans = soundPool.load(this,R.raw.wrongans,1);
+        correctans = soundPool.load(this,R.raw.correctans,1);
         questiondis = findViewById(R.id.question);
         counter = findViewById(R.id.countdown);
         qnumdis = findViewById(R.id.quest_count);
@@ -70,6 +118,7 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
 
 
         set_num = getIntent().getIntExtra("set_id",1);
+        setId=set_num;
         level_id=getIntent().getIntExtra("level",1);
 
         opt1.setOnClickListener(this);
@@ -80,6 +129,8 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
         db = FirebaseFirestore.getInstance();
         getQuestionsList();
     }
+
+
 
     private void getQuestionsList() {
         loading.show();
@@ -207,7 +258,7 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
                                     break;
                             }
                             if(viewnum != 0)
-                                ((Button)v).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#673AB7")));
+                                ((Button)v).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#BD4ED5")));
 
                             playAnim(v,1,viewnum);
                         }
@@ -250,11 +301,13 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
     private void checkAnswer(int selectedOpt, View v) {
         if(selectedOpt == questionsList.get(qnum).getAnswer()) {
             //right answer
+            soundPool.play(correctans,1,1,0,0,1);
             ((Button)v).setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
             score++;
 
         } else {
             //wrong answer
+            soundPool.play(wrongans,1,1,0,0,1);
             ((Button)v).setBackgroundTintList(ColorStateList.valueOf(Color.RED));
 
 
@@ -278,9 +331,31 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                soundPool.play(done,1,1,0,0,1);
                 changeQuestion();
             }
         }, 2000);
+    }
+
+//    /**To handle orientation changes
+//     * */
+//    @Override
+//    protected void onSaveInstanceState(@NonNull Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        outState.putString("Display Output",display.getText().toString());   //save textView output in our outstate bundle
+//    }
+//
+//    @Override
+//    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+//        super.onRestoreInstanceState(savedInstanceState);
+//        display.setText(savedInstanceState.getString("Display Output"));   //receiving and displaying the value from our saved instance state bundle
+//    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        soundPool.release();
+        soundPool=null;
     }
 
     @Override
@@ -288,5 +363,9 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
         Intent intent = new Intent(QuestionsActivity.this,MainActivity.class);
         startActivity(intent);
         finish();
+
+
+
     }
+
 }
