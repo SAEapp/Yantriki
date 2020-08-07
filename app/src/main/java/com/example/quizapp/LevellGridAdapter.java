@@ -13,6 +13,7 @@ import java.util.Random;
 
 public class LevellGridAdapter extends BaseAdapter {
     private List<String> levelsList;
+    public static int levelid;
 
     public LevellGridAdapter(List<String> levelsList) {
         this.levelsList = levelsList;
@@ -47,6 +48,7 @@ public class LevellGridAdapter extends BaseAdapter {
                     Intent intent = new Intent(parent.getContext(),SetsActivity.class);
                     intent.putExtra("Level",levelsList.get(position));
                     intent.putExtra("Level_ID",position+1);
+                    levelid = position+1;
                     parent.getContext().startActivity(intent);
                 }
             });

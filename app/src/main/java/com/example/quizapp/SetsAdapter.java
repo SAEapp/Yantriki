@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 public class SetsAdapter extends BaseAdapter {
     private int numOfSets;
+    public static int setId;
 
     public SetsAdapter(int numOfSets) {
         this.numOfSets = numOfSets;
@@ -42,6 +43,7 @@ public class SetsAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(parent.getContext(),QuestionsActivity.class);
                 intent.putExtra("set_id",position+1);
+                setId = position+1;
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 parent.getContext().startActivity(intent);
             }

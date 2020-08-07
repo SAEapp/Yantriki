@@ -3,8 +3,13 @@
     package="com.example.quizapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+ SoundEffects
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+ new_master
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,7 +17,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ScoreActivity"/>
+        <activity android:name=".Profile" />
+        <activity android:name=".EditProfile" />
+        <activity android:name=".ScoreActivity" />
         <activity android:name=".QuestionsActivity" />
         <activity android:name=".SetsActivity" />
         <activity android:name=".LevelsActivity" />
@@ -25,10 +32,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+        <activity android:name=".LeaderBoard" />
+        <activity android:name=".levelCard" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        
     </application>
 
 </manifest>

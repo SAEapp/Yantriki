@@ -6,7 +6,7 @@
     android:gravity="center"
     android:padding="5dp"
     android:layout_margin="20dp"
-    android:background="#833AB7">
+    android:background="@drawable/background_gradient">
 
 
     <TextView
