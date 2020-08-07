@@ -14,6 +14,14 @@ import androidx.lifecycle.ViewModelProviders;
 
 public class LeaderboardFragment extends Fragment {
 
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_leaderboard , container , false);
+        return view;
+    }
+
+
    /* private GalleryViewModel galleryViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
