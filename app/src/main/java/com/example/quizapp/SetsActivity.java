@@ -17,7 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class SetsActivity extends AppCompatActivity {
+public class SetsActivity extends AppCompatActivity  {
     private GridView setGrid;
     private FirebaseFirestore firestore ;
     private String levelName;
@@ -103,4 +103,6 @@ public class SetsActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }

@@ -45,6 +45,7 @@ public class LeaderBoard extends AppCompatActivity {
         LeaderBoard.setLayoutManager(new LinearLayoutManager(this));
 
 
+
         mFirestore= FirebaseFirestore.getInstance();
         Query leader= mFirestore.collection("ScoreBoard").orderBy("scorenum", Query.Direction.DESCENDING);
         leader.addSnapshotListener(new EventListener<QuerySnapshot>() {
