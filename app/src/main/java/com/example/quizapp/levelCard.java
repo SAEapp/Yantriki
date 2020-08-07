@@ -54,6 +54,7 @@ public class levelCard extends AppCompatActivity {
                 intent.putExtra("Level", "Beginner");
                 intent.putExtra("Level_ID", 1);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -130,6 +131,14 @@ public class levelCard extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(levelCard.this,MainActivity2.class);
+        startActivity(intent);
+        finish();
+    }
+
 
 
 

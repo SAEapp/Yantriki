@@ -37,8 +37,6 @@ public class newSetActivity extends AppCompatActivity implements NsetsAdapter.On
     private NsetsAdapter Adapter;
     public static long time_lim;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

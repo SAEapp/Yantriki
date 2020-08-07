@@ -123,6 +123,7 @@ public class HomeFragment extends Fragment {
                         }
                         Intent intent = new Intent(getActivity(),levelCard.class);
                         startActivity(intent);
+                        getActivity().finish();
                     }
                     else
                     {

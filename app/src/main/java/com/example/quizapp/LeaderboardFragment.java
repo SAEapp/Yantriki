@@ -66,13 +66,14 @@ public class LeaderboardFragment extends Fragment {
                     Log.i("FireStore", "onEvent: Error");
                 }
                 for(QueryDocumentSnapshot doc:queryDocumentSnapshots){
-
                     LBUsers lbUsers=doc.toObject(LBUsers.class);
-                    lbUsersList.add(lbUsers);
-                    lBrecyclerAdapter.notifyDataSetChanged();
-
+                    if(Integer.parseInt(lbUsers.getTotal_score())!=0){
+                        lbUsersList.add(lbUsers);
+                        lBrecyclerAdapter.notifyDataSetChanged();
+                    }
 
                 }
+
                 loading.cancel();
             }
         });
