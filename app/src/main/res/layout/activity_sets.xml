@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         app:titleTextColor="#FFFFFF"
         android:layout_height="?actionBarSize"
-        android:background="#833AB7"
+        android:background="@drawable/background_gradient"
         >
 
     </androidx.appcompat.widget.Toolbar>
