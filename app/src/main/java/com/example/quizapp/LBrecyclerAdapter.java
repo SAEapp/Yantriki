@@ -43,7 +43,7 @@ public class LBrecyclerAdapter extends RecyclerView.Adapter<LBrecyclerAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return Math.min(50,lbUsersList.size());
+        return lbUsersList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

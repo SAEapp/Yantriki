@@ -76,7 +76,7 @@ public class Register extends AppCompatActivity {
         animation.start();
 
         if (fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), MainActivity2.class));
             finish();
         }
 
@@ -127,7 +127,7 @@ public class Register extends AppCompatActivity {
                                 }
                             });
                             leaderboard(userID,fullName);
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), MainActivity2.class));
                             overridePendingTransition(android.R.anim.fade_in, R.anim.zoom);
                         }else{
                             Toast.makeText(Register.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();

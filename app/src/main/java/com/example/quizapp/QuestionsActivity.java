@@ -360,7 +360,7 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(QuestionsActivity.this,MainActivity.class);
+        Intent intent = new Intent(QuestionsActivity.this,MainActivity2.class);
         startActivity(intent);
         finish();
 

@@ -32,7 +32,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Dashboard");
+        getSupportActionBar().setTitle("AUTOQUIZ");
         navigationView = findViewById(R.id.nested);
 
 

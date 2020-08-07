@@ -50,10 +50,10 @@ public class LeaderboardFragment extends Fragment {
 
 
 
-        LeaderBoard= (RecyclerView) view.findViewById(R.id.recyclerView1);
+        LeaderBoard= (RecyclerView) view.findViewById(R.id.recyclerView);
         LeaderBoard.setAdapter(lBrecyclerAdapter);
         LeaderBoard.setHasFixedSize(true);
-        LeaderBoard.setLayoutManager(new LinearLayoutManager(getActivity()));
+        LeaderBoard.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
 
 

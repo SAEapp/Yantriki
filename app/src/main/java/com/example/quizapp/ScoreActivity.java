@@ -111,7 +111,7 @@ public class ScoreActivity extends AppCompatActivity {
         donebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ScoreActivity.this,MainActivity.class);
+                Intent intent = new Intent(ScoreActivity.this,MainActivity2.class);
                 startActivity(intent);
                 finish();
             }
