@@ -57,7 +57,6 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
     MediaPlayer mediaPlayer;
     int score =0;
     public static int setId;
-
     private FirebaseFirestore db ;
 
 ///////////////////////////////something for the future//////////////////////////////////////

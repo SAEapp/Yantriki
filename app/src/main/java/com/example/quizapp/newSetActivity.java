@@ -42,7 +42,7 @@ public class newSetActivity extends AppCompatActivity implements NsetsAdapter.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_set);
 
-        Toast.makeText(getApplicationContext(), "newSet", Toast.LENGTH_LONG).show();
+//        Toast.makeText(getApplicationContext(), "newSet", Toast.LENGTH_LONG).show();
 
         Bundle bundle = getIntent().getExtras();
         levelName = bundle.getString("Level");
