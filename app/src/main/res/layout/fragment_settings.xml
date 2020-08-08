@@ -1,6 +1,254 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color4"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/background_gradient"
+        android:gravity="center_vertical"
+        android:text="    APP SETTINGS"
+        android:textColor="@color/color4"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/ic_sound" />
+
+        <Switch
+            android:id="@+id/sounds_switch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:buttonTint="@color/colorPrimaryDark"
+            android:gravity="center_vertical"
+            android:switchMinWidth="40dp"
+            android:text="Sound Effects"
+
+            android:textColor="#95000000"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:thumbTint="@color/color4" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@drawable/background_gradient" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/ic_vibration" />
+
+        <Switch
+            android:id="@+id/viration_switch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:buttonTint="@color/colorPrimaryDark"
+            android:gravity="center_vertical"
+            android:switchMinWidth="40dp"
+            android:text="Vibrations"
+            android:textColor="#95000000"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:thumbTint="@color/color4" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@drawable/background_gradient" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/ic_notif" />
+
+        <Switch
+            android:id="@+id/push_notif_switch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:buttonTint="@color/colorPrimaryDark"
+            android:gravity="center_vertical"
+            android:switchMinWidth="40dp"
+            android:text="Push Notifications"
+            android:textColor="#95000000"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:thumbTint="@color/color4" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/background_gradient"
+        android:gravity="center_vertical"
+        android:text="    ACCOUNT"
+        android:textColor="@color/color4"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/ic_edit"
+                android:layout_gravity="center_vertical"/>
+
+            <Button
+                android:id="@+id/edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/color4"
+                android:text="  Edit Profile"
+                android:textAllCaps="false"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#95000000"
+                android:gravity="center"
+                android:textAlignment="viewStart"
+                />
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@drawable/background_gradient" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/ic_delete"
+                android:layout_gravity="center_vertical"/>
+
+            <Button
+                android:id="@+id/delete_account"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/color4"
+                android:text="  Delete Account"
+                android:textAllCaps="false"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#95000000"
+                android:gravity="center"
+                android:textAlignment="viewStart"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/background_gradient"
+        android:gravity="center_vertical"
+        android:text="    OTHERS"
+        android:textColor="@color/color4"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/ic_about"
+                android:layout_gravity="center_vertical"/>
+
+        <Button
+            android:id="@+id/about_btn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/color4"
+            android:text="  About"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#95000000"
+            android:gravity="center"
+            android:textAlignment="viewStart"
+            />
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@drawable/background_gradient" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/ic_logout"
+                android:layout_gravity="center_vertical"/>
+
+            <Button
+                android:id="@+id/logoutButton1"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/color4"
+                android:text="  Log Out"
+                android:textAllCaps="false"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#95000000"
+                android:gravity="center"
+                android:textAlignment="viewStart"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -68,7 +68,7 @@ public class ScoreActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         fScore = bundle.getInt("Score");
         totalq = bundle.getInt("TotalQ");
-        new_score.setText("Score : "+String.valueOf(fScore) + "/" + String.valueOf(totalq));
+        new_score.setText("Score : "+ String.valueOf(fScore) + "/" + String.valueOf(totalq));
 
         loading = new Dialog(ScoreActivity.this);
         loading.setContentView(R.layout.loading_progressbar);
