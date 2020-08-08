@@ -33,11 +33,11 @@
         <activity android:name=".LeaderBoard" />
         <activity android:name=".levelCard" />
 
-
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        
     </application>
 
 </manifest>

@@ -1,12 +1,15 @@
 package com.example.quizapp;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +38,7 @@ public class Register extends AppCompatActivity {
     ProgressBar progressBar;
     FirebaseFirestore fStore;
     String userID;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +54,34 @@ public class Register extends AppCompatActivity {
         fAuth= FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
         progressBar=findViewById(R.id.progressBar);
+        imageView=findViewById(R.id.imageView);
+
+        //Animation of the elements
+
+        AlphaAnimation alphaAnimation= new AlphaAnimation(0.5f,1f);
+        alphaAnimation.setDuration(1500);
+        alphaAnimation.setStartOffset(0);
+        alphaAnimation.setFillAfter(true);
+        imageView.startAnimation(alphaAnimation);
+        mFullName.startAnimation(alphaAnimation);
+        mEmail.startAnimation(alphaAnimation);
+        mPassword.startAnimation(alphaAnimation);
+        mPhone.startAnimation(alphaAnimation);
+        mRegisterBtn.startAnimation(alphaAnimation);
+        mLoginBtn.startAnimation(alphaAnimation);
+
+        imageView.setTranslationY(-600f);
+        ObjectAnimator animation = ObjectAnimator.ofFloat(imageView, "translationY", 0f);
+        animation.setDuration(2000);
+        animation.start();
 
         if (fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), MainActivity2.class));
             finish();
         }
+
+        //creating user and adding data in firestore
+
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,7 +127,8 @@ public class Register extends AppCompatActivity {
                                 }
                             });
                             leaderboard(userID,fullName);
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), MainActivity2.class));
+                            overridePendingTransition(android.R.anim.fade_in, R.anim.zoom);
                         }else{
                             Toast.makeText(Register.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
@@ -116,6 +144,8 @@ public class Register extends AppCompatActivity {
             }
         });
     }
+
+    //adding data for leaderboard
 
     public void leaderboard(String UserID, String fname){
 

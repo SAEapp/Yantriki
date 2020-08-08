@@ -35,8 +35,8 @@ import java.util.Objects;
 
 import javax.annotation.Nullable;
 
-import static com.example.quizapp.LevellGridAdapter.levelid;
-import static com.example.quizapp.SetsAdapter.setId;
+import static com.example.quizapp.newSetActivity.levelid;
+import static com.example.quizapp.QuestionsActivity.setId;
 
 public class ScoreActivity extends AppCompatActivity {
     private TextView new_score,bestScore;
@@ -75,43 +75,45 @@ public class ScoreActivity extends AppCompatActivity {
         loading.setCancelable(false);
         loading.getWindow().setBackgroundDrawableResource(R.drawable.progress_background);
         loading.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-
+        loading.show();
         new Thread() {
             public void run() {
                 // sleep(3000);
 
                 updatePrams();
+                bestScore.setText("Best : "+String.valueOf(high_score) + "/" + String.valueOf(totalq));
 
 
             }
         }.start();
+        loading.cancel();
 
-        bestScore.setText("Best : "+String.valueOf(high_score) + "/" + String.valueOf(totalq));
-
-
-        new Thread() {
-            public void run() {
-                // sleep(3000);
-                db.collection("users").document(userID)
-                        .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        int val = Integer.parseInt(documentSnapshot.getString("total_score"));
-                        if(is_first_try){
-                            db.collection("users").document(userID).update("total_score",String.valueOf(val+fScore));
-                        }
-                    }
-                });
-
-
-            }
-        }.start();
 
 
         donebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ScoreActivity.this,MainActivity.class);
+                loading.show();
+                new Thread() {
+                    public void run() {
+                        // sleep(3000);
+                        db.collection("users").document(userID)
+                                .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                int val = Integer.parseInt(documentSnapshot.getString("total_score"));
+                                if(is_first_try){
+                                    db.collection("users").document(userID).update("total_score",String.valueOf(val+fScore));
+                                }
+                            }
+                        });
+
+
+                    }
+                }.start();
+
+                loading.cancel();
+                Intent intent = new Intent(ScoreActivity.this,MainActivity2.class);
                 startActivity(intent);
                 finish();
             }
@@ -140,7 +142,7 @@ public class ScoreActivity extends AppCompatActivity {
                                 Toast.makeText(ScoreActivity.this, "Params Updated", Toast.LENGTH_SHORT).show();
                             }
                         });
-                        is_first_try = false ;
+                        is_first_try = false;
 
                     } else {
                         high_score = Integer.parseInt(documentSnapshot.getString("best_score"));
@@ -150,6 +152,7 @@ public class ScoreActivity extends AppCompatActivity {
                             .document(String.valueOf(levelid) + String.valueOf(setId)).set(quizParams);
                     is_first_try = true;
                     Log.d("tag", "Created Document");
+                    Toast.makeText(ScoreActivity.this, "New user Doc Created", Toast.LENGTH_SHORT).show();
                 }
             }
         });

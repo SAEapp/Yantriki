@@ -11,12 +11,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity2 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity2 extends AppCompatActivity {
 
 
     FragmentManager fragmentManager;
@@ -26,6 +28,8 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
     ActionBarDrawerToggle toggle;
     Toolbar toolbar;
 
+    boolean doubleBackToExitPressedOnce = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,9 +37,9 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Dashboard");
+        getSupportActionBar().setTitle("AUTOQUIZ");
         navigationView = findViewById(R.id.nested);
-        navigationView.setNavigationItemSelectedListener(this);
+
 
         drawer = findViewById(R.id.drawer);
         toggle = new ActionBarDrawerToggle(this,drawer,toolbar,R.string.open,R.string.close);
@@ -50,9 +54,47 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
         fragmentTransaction.add(R.id.fragmentContainer,new HomeFragment());
         fragmentTransaction.commit();
 
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                drawer.closeDrawer(GravityCompat.START);
+                if(item.getItemId() == R.id.home){
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragmentContainer,new HomeFragment());
+                    fragmentTransaction.commit();
+                    // loadFragment(new MainFragment());
+                }
+                if(item.getItemId() == R.id.account){
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragmentContainer,new ProfileFragment());
+                    fragmentTransaction.commit();
+                    //loadFragment(new SecondFragment());
+                }
+                if(item.getItemId() == R.id.leaderboard){
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragmentContainer,new LeaderboardFragment());
+                    fragmentTransaction.commit();
+                    //loadFragment(new MainFragment());
+                }
+                if(item.getItemId() == R.id.settings){
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragmentContainer,new SettingsFragment());
+                    fragmentTransaction.commit();
+                    //loadFragment(new MainFragment());
+                }
+                return true;
+
+            }
+
+        });
     }
 
-    @Override
+    /*@Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         drawer.closeDrawer(GravityCompat.START);
         if(item.getItemId() == R.id.home){
@@ -85,4 +127,26 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
       }
         return true;
     }
+    */
+
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+    }
+
 }
