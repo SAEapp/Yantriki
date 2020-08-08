@@ -157,21 +157,18 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        /*log_outbtn.setOnClickListener(new View.OnClickListener() {
+        log_outbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 logout(v);
             }
         });
-*/
 
-
-    /*public void logout(View view) {
-        FirebaseAuth.getInstance().signOut();//logout
-        startActivity(new Intent(getContext(),Login.class));
-        finish();
-    }*/
         return view;
     }
+    public void logout(View view) {
+        FirebaseAuth.getInstance().signOut();//logout
+        startActivity(new Intent(getContext(),Login.class));
+        getActivity().finish();}
 
 }
