@@ -133,15 +133,8 @@ public class Register extends AppCompatActivity {
                                             }
                                         });
                                         leaderboard(userID,fullName);
-                                        if(fAuth.getCurrentUser().isEmailVerified()){
-                                        startActivity(new Intent(getApplicationContext(), MainActivity2.class));
-                                        overridePendingTransition(android.R.anim.fade_in, R.anim.zoom);}
-                                        else {
-
-                                            Toast.makeText(Register.this, "Please verify your email", Toast.LENGTH_SHORT).show();
-
-                                        }
-
+                                        startActivity(new Intent(getApplicationContext(), Login.class));
+                                        overridePendingTransition(android.R.anim.fade_in, R.anim.zoom);
                                     }
                                 }
                             });
