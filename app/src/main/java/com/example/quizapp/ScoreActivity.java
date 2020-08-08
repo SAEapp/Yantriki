@@ -47,7 +47,6 @@ public class ScoreActivity extends AppCompatActivity {
     private int fScore;
     private int totalq;
     private int high_score;
-    private boolean is_first_try;
     private Dialog loading;
     private String userID;
 
@@ -78,11 +77,8 @@ public class ScoreActivity extends AppCompatActivity {
         loading.show();
         new Thread() {
             public void run() {
-                // sleep(3000);
 
                 updatePrams();
-                bestScore.setText("Best : "+String.valueOf(high_score) + "/" + String.valueOf(totalq));
-
 
             }
         }.start();
@@ -90,29 +86,11 @@ public class ScoreActivity extends AppCompatActivity {
 
 
 
+
         donebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loading.show();
-                new Thread() {
-                    public void run() {
-                        // sleep(3000);
-                        db.collection("users").document(userID)
-                                .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                            @Override
-                            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                int val = Integer.parseInt(documentSnapshot.getString("total_score"));
-                                if(is_first_try){
-                                    db.collection("users").document(userID).update("total_score",String.valueOf(val+fScore));
-                                }
-                            }
-                        });
 
-
-                    }
-                }.start();
-
-                loading.cancel();
                 Intent intent = new Intent(ScoreActivity.this,MainActivity2.class);
                 startActivity(intent);
                 finish();
@@ -123,7 +101,7 @@ public class ScoreActivity extends AppCompatActivity {
     private void updatePrams() {
         final Map<String, Object> quizParams = new HashMap<>();
         quizParams.put("best_score", "0");
-        quizParams.put("first_try", "1");
+        quizParams.put("first_try", true);
 
         final DocumentReference documentReference1 = db.collection("users").document(userID).collection("quize_scores")
                 .document(String.valueOf(levelid) + String.valueOf(setId));
@@ -135,24 +113,38 @@ public class ScoreActivity extends AppCompatActivity {
                         high_score = fScore;
                         Map<String, Object> updatedParams = new HashMap<>();
                         updatedParams.put("best_score", String.valueOf(fScore));
-                        updatedParams.put("first_try", "0");
+                        updatedParams.put("first_try", false);
                         documentReference1.update(updatedParams).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Toast.makeText(ScoreActivity.this, "Params Updated", Toast.LENGTH_SHORT).show();
                             }
                         });
-                        is_first_try = false;
 
                     } else {
                         high_score = Integer.parseInt(documentSnapshot.getString("best_score"));
                     }
+                    bestScore.setText("Best : "+String.valueOf(high_score) + "/" + String.valueOf(totalq));
                 } else {
                     db.collection("users").document(userID).collection("quize_scores")
                             .document(String.valueOf(levelid) + String.valueOf(setId)).set(quizParams);
-                    is_first_try = true;
                     Log.d("tag", "Created Document");
-                    Toast.makeText(ScoreActivity.this, "New user Doc Created", Toast.LENGTH_SHORT).show();
+                    new Thread() {
+                        public void run() {
+                            // sleep(3000);
+                            db.collection("users").document(userID)
+                                    .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    int val = Integer.parseInt(String.valueOf(documentSnapshot.get("total_score"))) ;
+
+                                    db.collection("users").document(userID).update("total_score",String.valueOf(val+fScore));
+                                    db.collection("users").document(userID).update("full_score",val+fScore);
+                                    Toast.makeText(ScoreActivity.this, "FULL SCORE UPDATED!", Toast.LENGTH_SHORT).show();
+
+                                }
+                            });
+                        }
+                    }.start();
                 }
             }
         });

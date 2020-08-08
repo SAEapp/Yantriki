@@ -101,7 +101,7 @@ public class ProfileFragment extends Fragment {
                     phone.setText(documentSnapshot.getString("phone"));
                     fullName.setText(documentSnapshot.getString("fName"));
                     email.setText(documentSnapshot.getString("email"));
-                    totalScore.setText(documentSnapshot.getString("total_score"));
+                    totalScore.setText(String.valueOf(documentSnapshot.get("full_score")));
 
                 }else {
                     Log.d("tag", "onEvent: Document do not exists");

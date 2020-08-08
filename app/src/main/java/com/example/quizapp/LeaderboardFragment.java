@@ -58,7 +58,7 @@ public class LeaderboardFragment extends Fragment {
 
 
         mFirestore= FirebaseFirestore.getInstance();
-        Query leader= mFirestore.collection("users").orderBy("total_score", Query.Direction.DESCENDING);
+        Query leader= mFirestore.collection("users").orderBy("full_score", Query.Direction.DESCENDING);
         leader.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@javax.annotation.Nullable QuerySnapshot queryDocumentSnapshots, @javax.annotation.Nullable FirebaseFirestoreException e) {
@@ -67,7 +67,7 @@ public class LeaderboardFragment extends Fragment {
                 }
                 for(QueryDocumentSnapshot doc:queryDocumentSnapshots){
                     LBUsers lbUsers=doc.toObject(LBUsers.class);
-                    if(Integer.parseInt(lbUsers.getTotal_score())!=0){
+                    if(lbUsers.getFull_score()!=0){
                         lbUsersList.add(lbUsers);
                         lBrecyclerAdapter.notifyDataSetChanged();
                     }
