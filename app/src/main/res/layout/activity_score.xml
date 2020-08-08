@@ -10,7 +10,7 @@
         android:id="@+id/imageView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:alpha="0.85"
+        android:alpha="0.95"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@mipmap/loginwhite" />
+        app:srcCompat="@mipmap/loginnew" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -64,17 +64,17 @@
 
     <Button
         android:id="@+id/sa_done"
-        android:layout_width="285dp"
-        android:layout_height="wrap_content"
+        android:layout_width="236dp"
+        android:layout_height="50dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="32dp"
 
-        android:text="Done"
-        android:background="@mipmap/txt"
+        android:background="@mipmap/outlinenew"
         android:ems="10"
         android:padding="10dp"
-        android:textColor="#673AB7"
+        android:text="Done"
+        android:textColor="@color/colorPrimaryDark"
         android:textColorHint="#FFFFFF"
         android:textSize="25sp"
         android:textStyle="bold"

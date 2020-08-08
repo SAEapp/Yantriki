@@ -82,7 +82,7 @@ public class Register extends AppCompatActivity {
         animation.setDuration(2000);
         animation.start();
 
-        if (fAuth.getCurrentUser() != null){
+        if (fAuth.getCurrentUser() != null && fAuth.getCurrentUser().isEmailVerified()){
             startActivity(new Intent(getApplicationContext(), MainActivity2.class));
             finish();
         }
@@ -141,6 +141,7 @@ public class Register extends AppCompatActivity {
                                             }
                                         });
                                         //leaderboard(userID,fullName);
+
                                         startActivity(new Intent(getApplicationContext(), Login.class));
                                         overridePendingTransition(android.R.anim.fade_in, R.anim.zoom);
                                     }

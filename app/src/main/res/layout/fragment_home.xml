@@ -10,7 +10,7 @@
         android:id="@+id/imageView21"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:alpha="0.85"
+        android:alpha="1"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@mipmap/loginwhite" />
+        app:srcCompat="@mipmap/loginnew" />
 
     <View
         android:id="@+id/view"
@@ -33,20 +33,18 @@
 
     <Button
         android:id="@+id/start1"
-        android:layout_width="287dp"
-        android:layout_height="70dp"
-        android:background="@mipmap/txt"
+        android:layout_width="257dp"
+        android:layout_height="64dp"
+        android:background="@drawable/button"
         android:ems="10"
         android:padding="10dp"
         android:text="Start Quiz"
-        android:textColor="#673AB7"
-        android:textColorHint="#FFFFFF"
-        android:textSize="30sp"
-        android:textStyle="bold"
+        android:textColor="@color/White"
+        android:textColorHint="#673AB7"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView21"
-        app:layout_constraintEnd_toEndOf="@+id/imageView21"
-        app:layout_constraintHorizontal_bias="0.572"
-        app:layout_constraintStart_toStartOf="@+id/imageView21"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <TextView
