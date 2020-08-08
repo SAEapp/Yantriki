@@ -19,6 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         loading = new Dialog(MainActivity.this);
         loading.setContentView(R.layout.loading_progressbar);
         loading.setCancelable(false);
-        loading.getWindow().setBackgroundDrawableResource(R.drawable.progress_background);
+        Objects.requireNonNull(loading.getWindow()).setBackgroundDrawableResource(R.drawable.progress_background);
         loading.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
 
         
@@ -110,13 +111,14 @@ public class MainActivity extends AppCompatActivity {
                 {
                     DocumentSnapshot doc = task.getResult();
 
+                    assert doc != null;
                     if(doc.exists())
                     {
                         long count = (long)doc.get("count");
 
                         for(int i=1; i <= count; i++)
                         {
-                            String levelName = doc.getString("level-" + String.valueOf(i));
+                            String levelName = doc.getString("level-" + i);
                            // String catID = doc.getString("CAT" + String.valueOf(i) + "_ID");
 
                             levelsList.add(levelName);
@@ -134,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
 
-                    Toast.makeText(MainActivity.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, Objects.requireNonNull(task.getException()).getMessage(),Toast.LENGTH_SHORT).show();
                 }
                 loading.cancel();
             }
