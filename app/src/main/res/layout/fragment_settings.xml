@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color4"
+    android:background="#ffffff"
     android:orientation="vertical">
 
 
@@ -39,7 +39,7 @@
             android:gravity="center_vertical"
             android:switchMinWidth="40dp"
             android:text="Sound Effects"
-
+            android:checked="true"
             android:textColor="#95000000"
             android:textSize="20dp"
             android:textStyle="bold"
@@ -63,7 +63,7 @@
             android:background="@drawable/ic_vibration" />
 
         <Switch
-            android:id="@+id/viration_switch"
+            android:id="@+id/vibration_switch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
@@ -71,6 +71,7 @@
             android:gravity="center_vertical"
             android:switchMinWidth="40dp"
             android:text="Vibrations"
+            android:checked="true"
             android:textColor="#95000000"
             android:textSize="20dp"
             android:textStyle="bold"
@@ -102,6 +103,7 @@
             android:gravity="center_vertical"
             android:switchMinWidth="40dp"
             android:text="Push Notifications"
+            android:checked="true"
             android:textColor="#95000000"
             android:textSize="20dp"
             android:textStyle="bold"

@@ -2,14 +2,17 @@ package com.example.quizapp;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -34,8 +37,17 @@ public class SettingsFragment extends Fragment {
     private FirebaseAuth fAuth;
     private FirebaseFirestore fStore;
     private Button log_outbtn,editProfile,deleteAccount,about;
-    private boolean first_press = true;
+    private Switch soundEffects,vibrations,pushNotif;
     private Dialog waiting;
+
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String SWITCH1 = "switch1";  //sound
+    public static final String SWITCH2 = "switch2";   //vibration
+    public static final String SWITCH3 = "switch3";   //push notif
+
+    public static boolean soundState;  //sound
+    public static boolean vibrationState;   //vibration
+    public static boolean pushNotificationState;
 
     @Nullable
     @Override
@@ -46,6 +58,9 @@ public class SettingsFragment extends Fragment {
         editProfile = view.findViewById(R.id.edit_profile);
         about = view.findViewById(R.id.about_btn);
         deleteAccount = view.findViewById(R.id.delete_account);
+        soundEffects = view.findViewById(R.id.sounds_switch);
+        vibrations = view.findViewById(R.id.vibration_switch);
+        pushNotif  = view.findViewById(R.id.push_notif_switch);
 
         waiting = new Dialog(getActivity());
         waiting.setContentView(R.layout.waiting_progressbar);
@@ -144,6 +159,24 @@ public class SettingsFragment extends Fragment {
         });
         return view;
     }
+
+        public void saveData() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putBoolean(SWITCH1,soundEffects.isChecked());
+        editor.putBoolean(SWITCH2,soundEffects.isChecked());
+        editor.putBoolean(SWITCH3,soundEffects.isChecked());
+        }
+
+        public void loadData() {
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS,Context.MODE_PRIVATE);
+            soundState = sharedPreferences.getBoolean(SWITCH1,true);
+            vibrationState = sharedPreferences.getBoolean(SWITCH2,true);
+            pushNotificationState = sharedPreferences.getBoolean(SWITCH3,true);
+    }
+
+
 
         public void logout(View view) {
         FirebaseAuth.getInstance().signOut();      //logout
