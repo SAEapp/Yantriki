@@ -77,6 +77,11 @@
             android:thumbTint="@color/color4" />
     </LinearLayout>
 
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@drawable/background_gradient" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -142,6 +147,11 @@
                 />
         </LinearLayout>
 
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@drawable/background_gradient" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp">
@@ -199,7 +209,6 @@
             android:layout_height="40dp"
             android:background="@color/color4"
             android:text="  About"
-
             android:textAllCaps="false"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -208,6 +217,11 @@
             android:textAlignment="viewStart"
             />
         </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@drawable/background_gradient" />
 
         <LinearLayout
             android:layout_width="match_parent"
