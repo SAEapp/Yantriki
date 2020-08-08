@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
@@ -52,6 +54,7 @@ public class newSetActivity extends AppCompatActivity implements NsetsAdapter.On
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(levelName);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //for back arrow
+        toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.color4), PorterDuff.Mode.SRC_ATOP);
         setRecycler= findViewById(R.id.setRecycler);
 
         loading = new Dialog(newSetActivity.this);
@@ -144,6 +147,16 @@ public class newSetActivity extends AppCompatActivity implements NsetsAdapter.On
         Intent intent = new Intent(newSetActivity.this,levelCard.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
