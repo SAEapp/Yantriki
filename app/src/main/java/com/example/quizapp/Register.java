@@ -107,7 +107,46 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(Register.this, "User Created.", Toast.LENGTH_SHORT).show();
+
+                            fAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+
+                                        Toast.makeText(Register.this, "User Created.", Toast.LENGTH_SHORT).show();
+                                        userID = fAuth.getCurrentUser().getUid();
+                                        DocumentReference documentReference = fStore.collection("users").document(userID);
+                                        Map<String,Object> user = new HashMap<>();
+                                        user.put("fName",fullName);
+                                        user.put("email",email);
+                                        user.put("phone",phone);
+                                        user.put("total_score","0");
+                                        documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Log.d(TAG, "onSuccess: user Profile is created for "+ userID);
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.d(TAG, "onFailure: " + e.toString());
+                                            }
+                                        });
+                                        leaderboard(userID,fullName);
+                                        if(fAuth.getCurrentUser().isEmailVerified()){
+                                        startActivity(new Intent(getApplicationContext(), MainActivity2.class));
+                                        overridePendingTransition(android.R.anim.fade_in, R.anim.zoom);}
+                                        else {
+
+                                            Toast.makeText(Register.this, "Please verify your email", Toast.LENGTH_SHORT).show();
+
+                                        }
+
+                                    }
+                                }
+                            });
+
+                            /*Toast.makeText(Register.this, "User Created.", Toast.LENGTH_SHORT).show();
                             userID = fAuth.getCurrentUser().getUid();
                             DocumentReference documentReference = fStore.collection("users").document(userID);
                             Map<String,Object> user = new HashMap<>();
@@ -128,7 +167,7 @@ public class Register extends AppCompatActivity {
                             });
                             leaderboard(userID,fullName);
                             startActivity(new Intent(getApplicationContext(), MainActivity2.class));
-                            overridePendingTransition(android.R.anim.fade_in, R.anim.zoom);
+                            overridePendingTransition(android.R.anim.fade_in, R.anim.zoom);*/
                         }else{
                             Toast.makeText(Register.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
