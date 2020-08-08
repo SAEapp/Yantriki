@@ -19,8 +19,7 @@
         <activity android:name=".EditProfile" />
         <activity android:name=".ScoreActivity" />
         <activity android:name=".QuestionsActivity" />
-        <activity android:name=".SetsActivity" />
-        <activity android:name=".LevelsActivity" />
+
         <activity android:name=".Login" />
         <activity android:name=".Register">
             <intent-filter>
@@ -29,8 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".LeaderBoard" />
+      /
         <activity android:name=".levelCard" />
 
         <meta-data
