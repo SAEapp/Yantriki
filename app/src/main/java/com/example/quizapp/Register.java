@@ -128,6 +128,7 @@ public class Register extends AppCompatActivity {
                                         user.put("email",email);
                                         user.put("phone",phone);
                                         user.put("total_score","0");
+                                        user.put("totalscorenum", 0);
 
                                         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
@@ -140,7 +141,7 @@ public class Register extends AppCompatActivity {
                                                 Log.d(TAG, "onFailure: " + e.toString());
                                             }
                                         });
-                                        leaderboard(userID,fullName);
+                                        //leaderboard(userID,fullName);
                                         startActivity(new Intent(getApplicationContext(), Login.class));
                                         overridePendingTransition(android.R.anim.fade_in, R.anim.zoom);
                                     }
@@ -187,7 +188,7 @@ public class Register extends AppCompatActivity {
 
     //adding data for leaderboard
 
-    public void leaderboard(String UserID, String fname){
+    /*public void leaderboard(String UserID, String fname){
 
         DocumentReference Reference = fStore.collection("ScoreBoard").document(userID);
         HashMap<String, Object> LBuser= new HashMap<>();
@@ -204,4 +205,6 @@ public class Register extends AppCompatActivity {
         });
 
     }
+
+     */
 }

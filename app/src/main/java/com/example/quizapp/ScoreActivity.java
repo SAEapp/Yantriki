@@ -104,6 +104,8 @@ public class ScoreActivity extends AppCompatActivity {
                                 int val = Integer.parseInt(documentSnapshot.getString("total_score"));
                                 if(is_first_try){
                                     db.collection("users").document(userID).update("total_score",String.valueOf(val+fScore));
+                                    db.collection("users").document(userID).update("totalscorenum",val+fScore);
+
                                 }
                             }
                         });
