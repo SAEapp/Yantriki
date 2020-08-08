@@ -13,7 +13,7 @@
         android:hapticFeedbackEnabled="true"
         app:titleTextColor="#FFFFFF"
         android:layout_height="?actionBarSize"
-        android:background="#833AB7"
+        android:background="@color/colorPrimaryDark"
         >
 
     </androidx.appcompat.widget.Toolbar>
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Sets"
-        android:textColor="#673AB7"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="26sp"
         android:textStyle="bold"
         android:padding="16dp"

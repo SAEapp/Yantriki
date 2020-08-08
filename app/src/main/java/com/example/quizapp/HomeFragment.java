@@ -36,16 +36,6 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home , container , false);
 
         startbtn = view.findViewById(R.id.start1);
-//        logoutbtn = view.findViewById(R.id.button1);
-//        profilebtn = view.findViewById(R.id.profile_button1);
-
-//        Button leaderboard= view.findViewById(R.id.leaderboard1);
-//        leaderboard.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getActivity(), LeaderBoard.class));
-//            }
-//        });
 
         loading = new Dialog(getActivity());
         loading.setContentView(R.layout.loading_progressbar);
@@ -55,15 +45,6 @@ public class HomeFragment extends Fragment {
 
 
         firestore = FirebaseFirestore.getInstance();
-
-//        logoutbtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                logout(v);
-////                Intent intent = new Intent(getActivity(),MainActivity2.class);
-////                startActivity(intent);
-//            }
-//        });
 
         startbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,23 +63,9 @@ public class HomeFragment extends Fragment {
             }
         });
 
-//        profilebtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Intent intent = new Intent(getActivity(),Profile.class);
-//                startActivity(intent);
-//
-//            }
-//        });
         return view;
     }
 
-//    public void logout(View view){
-//        FirebaseAuth.getInstance().signOut();
-//        startActivity(new Intent(getActivity(),Login.class));
-//        getActivity().finish();
-//    }
     private void loadData() {
         levelsList.clear();
         firestore.collection("Quizes").document("Levels")
@@ -123,6 +90,7 @@ public class HomeFragment extends Fragment {
                         }
                         Intent intent = new Intent(getActivity(),levelCard.class);
                         startActivity(intent);
+
                         getActivity().finish();
                     }
                     else
@@ -141,6 +109,7 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
 
 
 

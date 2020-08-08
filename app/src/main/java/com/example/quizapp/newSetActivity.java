@@ -139,6 +139,7 @@ public class newSetActivity extends AppCompatActivity implements NsetsAdapter.On
         intent.putExtra("level",levelid);
         //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
         finish();
     }
 
@@ -146,6 +147,7 @@ public class newSetActivity extends AppCompatActivity implements NsetsAdapter.On
     public void onBackPressed() {
         Intent intent = new Intent(newSetActivity.this,levelCard.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
         finish();
     }
 

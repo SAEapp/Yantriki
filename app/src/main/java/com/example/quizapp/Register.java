@@ -143,6 +143,7 @@ public class Register extends AppCompatActivity {
                                         //leaderboard(userID,fullName);
                                         startActivity(new Intent(getApplicationContext(), Login.class));
                                         overridePendingTransition(android.R.anim.fade_in, R.anim.zoom);
+                                        finish();
                                     }
                                 }
                             });
