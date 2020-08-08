@@ -37,7 +37,7 @@ import java.util.concurrent.Executor;
 public class ProfileFragment extends Fragment {
 
     private static final int GALLERY_INTENT_CODE = 1023 ;
-    TextView fullName,email,phone;
+    TextView fullName,email,phone,totalScore;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     String userId;
@@ -49,18 +49,19 @@ public class ProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_profile , container , false);
+        View view = inflater.inflate(R.layout.fragment_profile , container , false);
 
         //setContentView(R.layout.activity_profile);
 
-        phone = view.findViewById(R.id.phone_textView1);
-        fullName = view.findViewById(R.id.name_textView1);
-        email    = view.findViewById(R.id.email_textView1);
+        phone = view.findViewById(R.id.phone_textView11);
+        fullName = view.findViewById(R.id.name_textView11);
+        email    = view.findViewById(R.id.email_textView11);
+        totalScore    = view.findViewById(R.id.totalScore);
 
-        profileImage = view.findViewById(R.id.imageView1);
-        changeProfile = view.findViewById(R.id.editButton);
-        resetPassLocal = view.findViewById(R.id.change_passwordButton);
-        log_outbtn = view.findViewById(R.id.logoutButton);
+        profileImage = view.findViewById(R.id.imageView11);
+        changeProfile = view.findViewById(R.id.editButton1);
+        resetPassLocal = view.findViewById(R.id.change_passwordButton1);
+        log_outbtn = view.findViewById(R.id.logoutButton1);
 
 //        Toolbar toolbar = findViewById(R.id.toolbar2);
 //        setSupportActionBar(toolbar);
@@ -91,6 +92,7 @@ public class ProfileFragment extends Fragment {
                     phone.setText(documentSnapshot.getString("phone"));
                     fullName.setText(documentSnapshot.getString("fName"));
                     email.setText(documentSnapshot.getString("email"));
+                    totalScore.setText(documentSnapshot.getString("total_score"));
 
                 }else {
                     Log.d("tag", "onEvent: Document do not exists");
@@ -155,21 +157,18 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        /*log_outbtn.setOnClickListener(new View.OnClickListener() {
+        log_outbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 logout(v);
             }
         });
-*/
 
-
-    /*public void logout(View view) {
-        FirebaseAuth.getInstance().signOut();//logout
-        startActivity(new Intent(getContext(),Login.class));
-        finish();
-    }*/
         return view;
     }
+    public void logout(View view) {
+        FirebaseAuth.getInstance().signOut();//logout
+        startActivity(new Intent(getContext(),Login.class));
+        getActivity().finish();}
 
 }

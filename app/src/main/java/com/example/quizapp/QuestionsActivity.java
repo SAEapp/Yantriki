@@ -57,7 +57,6 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
     MediaPlayer mediaPlayer;
     int score =0;
     public static int setId;
-
     private FirebaseFirestore db ;
 
 ///////////////////////////////something for the future//////////////////////////////////////
@@ -360,7 +359,7 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(QuestionsActivity.this,MainActivity.class);
+        Intent intent = new Intent(QuestionsActivity.this,MainActivity2.class);
         startActivity(intent);
         finish();
 

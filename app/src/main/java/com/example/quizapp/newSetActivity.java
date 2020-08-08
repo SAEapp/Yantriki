@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
@@ -37,14 +39,12 @@ public class newSetActivity extends AppCompatActivity implements NsetsAdapter.On
     private NsetsAdapter Adapter;
     public static long time_lim;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_set);
 
-        Toast.makeText(getApplicationContext(), "newSet", Toast.LENGTH_LONG).show();
+//        Toast.makeText(getApplicationContext(), "newSet", Toast.LENGTH_LONG).show();
 
         Bundle bundle = getIntent().getExtras();
         levelName = bundle.getString("Level");
@@ -54,6 +54,7 @@ public class newSetActivity extends AppCompatActivity implements NsetsAdapter.On
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(levelName);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //for back arrow
+        toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.color4), PorterDuff.Mode.SRC_ATOP);
         setRecycler= findViewById(R.id.setRecycler);
 
         loading = new Dialog(newSetActivity.this);
@@ -138,5 +139,24 @@ public class newSetActivity extends AppCompatActivity implements NsetsAdapter.On
         intent.putExtra("level",levelid);
         //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+        finish();
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(newSetActivity.this,levelCard.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
