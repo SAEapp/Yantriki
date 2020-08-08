@@ -47,7 +47,7 @@
 
             <TextView
                 android:id="@+id/listRank"
-                android:layout_width="23dp"
+                android:layout_width="wrap_content"
                 android:layout_height="49dp"
                 android:layout_marginStart="16dp"
                 android:text="1"
