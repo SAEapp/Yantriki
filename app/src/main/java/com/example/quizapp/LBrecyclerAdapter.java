@@ -30,7 +30,7 @@ public class LBrecyclerAdapter extends RecyclerView.Adapter<LBrecyclerAdapter.Vi
         String Name= lbUsersList.get(position).getfName();
         holder.setname(Name);
 
-        String Score= lbUsersList.get(position).getTotal_score();
+        String Score= String.valueOf(lbUsersList.get(position).getFull_score());
 
         holder.setscore(Score);
 

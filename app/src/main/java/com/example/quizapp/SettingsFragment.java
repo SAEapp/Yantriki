@@ -2,14 +2,18 @@ package com.example.quizapp;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -27,6 +31,10 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
+import static com.example.quizapp.MainActivity2.pushNotificationState;
+import static com.example.quizapp.MainActivity2.soundState;
+import static com.example.quizapp.MainActivity2.vibrationState;
+
 public class SettingsFragment extends Fragment {
 
     private FirebaseUser user;
@@ -34,8 +42,15 @@ public class SettingsFragment extends Fragment {
     private FirebaseAuth fAuth;
     private FirebaseFirestore fStore;
     private Button log_outbtn,editProfile,deleteAccount,about;
-    private boolean first_press = true;
+    public static Switch soundEffects,vibrations,pushNotif;
     private Dialog waiting;
+
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String SWITCH1 = "switch1";  //sound
+    public static final String SWITCH2 = "switch2";   //vibration
+    public static final String SWITCH3 = "switch3";   //push notif
+
+
 
     @Nullable
     @Override
@@ -46,12 +61,23 @@ public class SettingsFragment extends Fragment {
         editProfile = view.findViewById(R.id.edit_profile);
         about = view.findViewById(R.id.about_btn);
         deleteAccount = view.findViewById(R.id.delete_account);
+        soundEffects = view.findViewById(R.id.sounds_switch);
+        vibrations = view.findViewById(R.id.vibration_switch);
+        pushNotif  = view.findViewById(R.id.push_notif_switch);
 
         waiting = new Dialog(getActivity());
         waiting.setContentView(R.layout.waiting_progressbar);
         waiting.setCancelable(true);
         waiting.getWindow().setBackgroundDrawableResource(R.drawable.progress_background);
         waiting.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        loadData();
+
+
+        soundEffects.setChecked(soundState);
+        vibrations.setChecked(vibrationState);
+        pushNotif.setChecked(pushNotificationState);
+
 
 
         fAuth = FirebaseAuth.getInstance();
@@ -120,7 +146,8 @@ public class SettingsFragment extends Fragment {
         about.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(getActivity(),AboutAppActivity.class);
+                startActivity(i);
             }
         });
 
@@ -145,7 +172,32 @@ public class SettingsFragment extends Fragment {
         return view;
     }
 
-        public void logout(View view) {
+    public void saveData() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putBoolean(SWITCH1,soundEffects.isChecked());
+        editor.putBoolean(SWITCH2,vibrations.isChecked());
+        editor.putBoolean(SWITCH3,pushNotif.isChecked());
+
+        editor.apply();
+        Toast.makeText(getActivity(), "saved data", Toast.LENGTH_SHORT).show();
+    }
+
+    public void loadData() {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS,Context.MODE_PRIVATE);
+        soundState = sharedPreferences.getBoolean(SWITCH1,true);
+        vibrationState = sharedPreferences.getBoolean(SWITCH2,true);
+        pushNotificationState = sharedPreferences.getBoolean(SWITCH3,true);
+    }
+
+    @Override
+    public void onDestroy() {
+        saveData();
+        super.onDestroy();
+    }
+
+    public void logout(View view) {
         FirebaseAuth.getInstance().signOut();      //logout
         startActivity(new Intent(getContext(),Login.class));
         getActivity().finish();}

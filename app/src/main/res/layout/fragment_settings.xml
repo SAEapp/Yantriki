@@ -38,7 +38,7 @@
             android:gravity="center_vertical"
             android:switchMinWidth="40dp"
             android:text="Sound Effects"
-
+            android:checked="true"
             android:textColor="#95000000"
             android:textSize="20dp"
             android:thumbTint="@color/color4" />
@@ -62,7 +62,7 @@
             android:background="@drawable/ic_vibration" />
 
         <Switch
-            android:id="@+id/viration_switch"
+            android:id="@+id/vibration_switch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
@@ -70,6 +70,7 @@
             android:gravity="center_vertical"
             android:switchMinWidth="40dp"
             android:text="Vibrations"
+            android:checked="true"
             android:textColor="#95000000"
             android:textSize="20dp"
             android:thumbTint="@color/color4" />
@@ -101,6 +102,7 @@
             android:gravity="center_vertical"
             android:switchMinWidth="40dp"
             android:text="Push Notifications"
+            android:checked="true"
             android:textColor="#95000000"
             android:textSize="20dp"
             android:thumbTint="@color/color4" />
@@ -128,8 +130,8 @@
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/ic_edit" />
+                android:background="@drawable/ic_edit"
+                android:layout_gravity="center_vertical"/>
 
             <Button
                 android:id="@+id/edit_profile"
@@ -141,7 +143,7 @@
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
                 android:textColor="#95000000"
-                android:textSize="20sp" />
+                 />
         </LinearLayout>
 
         <View
@@ -157,8 +159,8 @@
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/ic_delete" />
+                android:background="@drawable/ic_delete"
+                android:layout_gravity="center_vertical"/>
 
             <Button
                 android:id="@+id/delete_account"
@@ -170,7 +172,7 @@
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
                 android:textColor="#95000000"
-                android:textSize="20sp" />
+                />
         </LinearLayout>
 
     </LinearLayout>
@@ -223,24 +225,23 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp">
-
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/ic_logout" />
+                android:background="@drawable/ic_logout"
+                android:layout_gravity="center_vertical"/>
 
             <Button
                 android:id="@+id/logoutButton1"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="@color/colorPrimary"
-
+                android:background="@color/color4"
                 android:text="  Log Out"
-                android:textAlignment="viewStart"
                 android:textAllCaps="false"
                 android:textColor="#95000000"
-                android:textSize="20sp" />
+
+                android:textAlignment="viewStart"
+                />
         </LinearLayout>
 
     </LinearLayout>
