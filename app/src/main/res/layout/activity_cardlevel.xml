@@ -16,6 +16,10 @@
 
         android:id="@+id/viewPager"/>
 
+    <include
+        layout="@layout/drawer_toolbar"/>
+
+
     <Button
         android:id="@+id/start"
         android:layout_width="230dp"

@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
-
+import androidx.appcompat.widget.Toolbar;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,18 +22,28 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button startbtn,logoutbtn,profilebtn;
+    private Button startbtn,logoutbtn,profilebtn,temp;
     private FirebaseFirestore firestore;
     public static List<String> levelsList = new ArrayList<>();
     private Dialog loading;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         startbtn = findViewById(R.id.start);
         logoutbtn = findViewById(R.id.button);
         profilebtn = findViewById(R.id.profile_button);
+        temp = findViewById(R.id.temp);
+
+        temp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,SettingsActivity.class));
+            }
+        });
 
         Button leaderboard= findViewById(R.id.leaderboard);
         leaderboard.setOnClickListener(new View.OnClickListener() {

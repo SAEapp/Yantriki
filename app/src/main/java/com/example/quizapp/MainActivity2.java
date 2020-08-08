@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -75,13 +76,13 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
             fragmentTransaction.commit();
             //loadFragment(new MainFragment());
         }
-        if(item.getItemId() == R.id.settings){
+      if(item.getItemId() == R.id.settings){
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainer,new SettingsFragment());
+            fragmentTransaction.replace(R.id.fragment_container,new Fragment());
             fragmentTransaction.commit();
             //loadFragment(new MainFragment());
-        }
+      }
         return true;
     }
 }
