@@ -4,12 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -27,8 +29,8 @@ public class Login extends AppCompatActivity {
   EditText mEmail,mPassword;
   Button mLoginBtn;
   TextView mCreateBtn,forgotTextLink;
-  ProgressBar progressBar;
   FirebaseAuth fAuth;
+  private Dialog waiting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +43,16 @@ public class Login extends AppCompatActivity {
         mPassword=findViewById(R.id.password);
         mPassword.setHintTextColor(Color.rgb(103,58,183));
 
-        progressBar=findViewById(R.id.progressBar2);
        fAuth=FirebaseAuth.getInstance();
        mLoginBtn=findViewById(R.id.loginBtn);
        mCreateBtn=findViewById(R.id.createText);
        forgotTextLink=findViewById(R.id.forgotPassword);
+
+        waiting = new Dialog(Login.this);
+        waiting.setContentView(R.layout.waiting_progressbar);
+        waiting.setCancelable(true);
+        waiting.getWindow().setBackgroundDrawableResource(R.drawable.progress_background);
+        waiting.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
 
        mLoginBtn.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -64,7 +71,7 @@ public class Login extends AppCompatActivity {
                    mPassword.setError("Password must be >= 6 Characters");
                    return;
                }
-               progressBar.setVisibility(View.VISIBLE);
+               waiting.show();
 
                //authenticate the user
 
@@ -89,7 +96,7 @@ public class Login extends AppCompatActivity {
                            startActivity(new Intent(getApplicationContext(),MainActivity2.class));*/
                        }else{
                            Toast.makeText(Login.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                           progressBar.setVisibility(View.GONE);
+                           waiting.cancel();
                        }
                    }
                });

@@ -1,5 +1,6 @@
 package com.example.quizapp;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -45,6 +46,7 @@ public class ProfileFragment extends Fragment {
     FirebaseUser user;
     ImageView profileImage;
     StorageReference storageReference;
+    private Dialog waiting;
 
     @Nullable
     @Override
@@ -67,6 +69,13 @@ public class ProfileFragment extends Fragment {
 //        setSupportActionBar(toolbar);
 //        getSupportActionBar().setTitle("Profile");
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        waiting = new Dialog(getActivity());
+        waiting.setContentView(R.layout.waiting_progressbar);
+        waiting.setCancelable(true);
+        waiting.getWindow().setBackgroundDrawableResource(R.drawable.progress_background);
+        waiting.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        waiting.show();
 
 
         fAuth = FirebaseAuth.getInstance();
@@ -99,6 +108,9 @@ public class ProfileFragment extends Fragment {
                 }
             }
         });
+        waiting.cancel();
+
+
 
         resetPassLocal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,18 +169,19 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        log_outbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                logout(v);
-            }
-        });
+//        log_outbtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                logout(v);
+//            }
+//        });
+
 
         return view;
     }
-    public void logout(View view) {
-        FirebaseAuth.getInstance().signOut();//logout
-        startActivity(new Intent(getContext(),Login.class));
-        getActivity().finish();}
+//    public void logout(View view) {
+//        FirebaseAuth.getInstance().signOut();//logout
+//        startActivity(new Intent(getContext(),Login.class));
+//        getActivity().finish();}
 
 }

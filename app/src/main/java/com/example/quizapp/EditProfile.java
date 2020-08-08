@@ -4,12 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -39,6 +41,7 @@ public class EditProfile extends AppCompatActivity {
     FirebaseFirestore fStore;
     FirebaseUser user;
     StorageReference storageReference;
+    private Dialog waiting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,13 @@ public class EditProfile extends AppCompatActivity {
         profileImageView = findViewById(R.id.imageView);
         saveBtn = findViewById(R.id.saveButton);
 
+        waiting = new Dialog(EditProfile.this);
+        waiting.setContentView(R.layout.waiting_progressbar);
+        waiting.setCancelable(true);
+        waiting.getWindow().setBackgroundDrawableResource(R.drawable.progress_background);
+        waiting.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        waiting.show();
+
         StorageReference profileRef = storageReference.child("users/"+fAuth.getCurrentUser().getUid()+"/profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
@@ -68,6 +78,7 @@ public class EditProfile extends AppCompatActivity {
                 Picasso.get().load(uri).into(profileImageView);
             }
         });
+
 
         profileImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,6 +131,7 @@ public class EditProfile extends AppCompatActivity {
         profilePhone.setText(phone);
 
         Log.d(TAG, "onCreate: " + fullName + " " + email + " " + phone);
+        waiting.cancel();
 
     }
 
@@ -129,7 +141,7 @@ public class EditProfile extends AppCompatActivity {
         if(requestCode == 1000){
             if(resultCode == Activity.RESULT_OK){
                 Uri imageUri = data.getData();
-
+                Picasso.get().load(imageUri).into(profileImageView);
                 //profileImage.setImageURI(imageUri);
 
                 uploadImageToFirebase(imageUri);

@@ -1,11 +1,13 @@
 package com.example.quizapp;
 
 import android.animation.ObjectAnimator;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,10 +37,10 @@ public class Register extends AppCompatActivity {
     Button mRegisterBtn;
     TextView mLoginBtn;
     FirebaseAuth fAuth;
-    ProgressBar progressBar;
     FirebaseFirestore fStore;
     String userID;
     ImageView imageView;
+    private Dialog waiting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +55,13 @@ public class Register extends AppCompatActivity {
         mLoginBtn=findViewById(R.id.createText);
         fAuth= FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
-        progressBar=findViewById(R.id.progressBar);
         imageView=findViewById(R.id.imageView);
+
+        waiting = new Dialog(Register.this);
+        waiting.setContentView(R.layout.waiting_progressbar);
+        waiting.setCancelable(true);
+        waiting.getWindow().setBackgroundDrawableResource(R.drawable.progress_background);
+        waiting.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
 
         //Animation of the elements
 
@@ -101,7 +108,7 @@ public class Register extends AppCompatActivity {
                     mPassword.setError("Password must be >= 6 Characters");
                     return;
                 }
-                progressBar.setVisibility(View.VISIBLE);
+                waiting.show();
                 //register the user in firebase
                 fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -163,7 +170,7 @@ public class Register extends AppCompatActivity {
                             overridePendingTransition(android.R.anim.fade_in, R.anim.zoom);*/
                         }else{
                             Toast.makeText(Register.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.GONE);
+                            waiting.cancel();
                         }
                     }
                 });
