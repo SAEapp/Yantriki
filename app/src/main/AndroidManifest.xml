@@ -3,7 +3,6 @@
     package="com.example.quizapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
@@ -13,8 +12,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".SettingsActivity"></activity>
+        android:theme="@style/AppTheme"
+        android:fullBackupContent="true">
+        <activity android:name=".SettingsActivity" />
         <activity android:name=".MainActivity2" />
         <activity android:name=".Profile" />
         <activity android:name=".EditProfile" />
@@ -33,6 +33,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".LeaderBoard" />
         <activity android:name=".levelCard" />
+
 
 
         <meta-data
