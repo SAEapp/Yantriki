@@ -121,6 +121,7 @@ public class Register extends AppCompatActivity {
                                         user.put("email",email);
                                         user.put("phone",phone);
                                         user.put("total_score","0");
+
                                         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {

@@ -12,29 +12,37 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity2"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".newSetActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".EditProfile"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ScoreActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".QuestionsActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Login"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Register"
-            android:screenOrientation="portrait">
 
+        <activity
+            android:name=".MainActivity2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".newSetActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EditProfile"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ScoreActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".QuestionsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Login"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SplashScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".levelCard"/>
-
+        <activity android:name=".Register"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".levelCard" />
 
         <meta-data
             android:name="preloaded_fonts"

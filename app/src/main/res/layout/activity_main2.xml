@@ -8,9 +8,9 @@
     android:id="@+id/drawer">
 
     <include
+        layout="@layout/drawer_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/drawer_toolbar"/>
+        android:layout_height="wrap_content" />
 
     <include
         android:layout_width="match_parent"
