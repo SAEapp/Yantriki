@@ -4,25 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@color/colorPrimary"
     android:orientation="vertical">
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@drawable/background_gradient"
+        android:background="@color/color4"
         android:gravity="center_vertical"
         android:text="    APP SETTINGS"
-        android:textColor="@color/color4"
+        android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal">
+        android:layout_height="40dp">
 
         <ImageView
             android:layout_width="35dp"
@@ -42,14 +41,14 @@
             android:checked="true"
             android:textColor="#95000000"
             android:textSize="20dp"
-            android:textStyle="bold"
             android:thumbTint="@color/color4" />
     </LinearLayout>
 
     <View
         android:layout_width="wrap_content"
         android:layout_height="1dp"
-        android:background="@drawable/background_gradient" />
+        android:background="@drawable/background_gradient"
+        android:visibility="invisible"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,14 +73,14 @@
             android:checked="true"
             android:textColor="#95000000"
             android:textSize="20dp"
-            android:textStyle="bold"
             android:thumbTint="@color/color4" />
     </LinearLayout>
 
     <View
         android:layout_width="wrap_content"
         android:layout_height="1dp"
-        android:background="@drawable/background_gradient" />
+        android:background="@drawable/background_gradient"
+        android:visibility="invisible"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -106,28 +105,28 @@
             android:checked="true"
             android:textColor="#95000000"
             android:textSize="20dp"
-            android:textStyle="bold"
             android:thumbTint="@color/color4" />
     </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@drawable/background_gradient"
-        android:gravity="center_vertical"
-        android:text="    ACCOUNT"
-        android:textColor="@color/color4"
-        android:textSize="20sp"
-        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/color4"
+            android:gravity="center_vertical"
+            android:text="    ACCOUNT"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp">
+
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
@@ -138,25 +137,25 @@
                 android:id="@+id/edit_profile"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="@color/color4"
+                android:background="@color/colorPrimary"
+
                 android:text="  Edit Profile"
-                android:textAllCaps="false"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="#95000000"
-                android:gravity="center"
                 android:textAlignment="viewStart"
-                />
+                android:textAllCaps="false"
+                android:textColor="#95000000"
+                 />
         </LinearLayout>
 
         <View
             android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:background="@drawable/background_gradient" />
+            android:background="@drawable/background_gradient"
+            android:visibility="invisible"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp">
+
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
@@ -167,14 +166,12 @@
                 android:id="@+id/delete_account"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="@color/color4"
+                android:background="@color/colorPrimary"
+
                 android:text="  Delete Account"
-                android:textAllCaps="false"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="#95000000"
-                android:gravity="center"
                 android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textColor="#95000000"
                 />
         </LinearLayout>
 
@@ -184,10 +181,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@drawable/background_gradient"
+        android:background="@color/color4"
         android:gravity="center_vertical"
         android:text="    OTHERS"
-        android:textColor="@color/color4"
+        android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -199,31 +196,31 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp">
+
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:background="@drawable/ic_about"
-                android:layout_gravity="center_vertical"/>
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/ic_about" />
 
-        <Button
-            android:id="@+id/about_btn"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@color/color4"
-            android:text="  About"
-            android:textAllCaps="false"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#95000000"
-            android:gravity="center"
-            android:textAlignment="viewStart"
-            />
+            <Button
+                android:id="@+id/about_btn"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/colorPrimary"
+
+                android:text="  About"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textColor="#95000000"
+                android:textSize="20sp" />
         </LinearLayout>
 
         <View
             android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:background="@drawable/background_gradient" />
+            android:background="@drawable/background_gradient"
+            android:visibility="invisible"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -241,16 +238,13 @@
                 android:background="@color/color4"
                 android:text="  Log Out"
                 android:textAllCaps="false"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 android:textColor="#95000000"
-                android:gravity="center"
+
                 android:textAlignment="viewStart"
                 />
         </LinearLayout>
 
     </LinearLayout>
-
 
 
 </LinearLayout>

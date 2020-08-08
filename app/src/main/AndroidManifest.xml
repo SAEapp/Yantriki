@@ -7,12 +7,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@mipmap/appicon"
+        android:label="AutoQuiz"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AboutAppActivity"></activity>
+
         <activity
             android:name=".MainActivity2"
             android:screenOrientation="portrait" />
@@ -32,7 +32,7 @@
             android:name=".Login"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Register"
+            android:name=".SplashScreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,6 +40,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Register"
+            android:screenOrientation="portrait"/>
         <activity android:name=".levelCard" />
 
         <meta-data

@@ -140,7 +140,7 @@ public class Register extends AppCompatActivity {
                                                 Log.d(TAG, "onFailure: " + e.toString());
                                             }
                                         });
-                                        leaderboard(userID,fullName);
+                                        //leaderboard(userID,fullName);
                                         startActivity(new Intent(getApplicationContext(), Login.class));
                                         overridePendingTransition(android.R.anim.fade_in, R.anim.zoom);
                                     }
@@ -187,7 +187,7 @@ public class Register extends AppCompatActivity {
 
     //adding data for leaderboard
 
-    public void leaderboard(String UserID, String fname){
+    /*public void leaderboard(String UserID, String fname){
 
         DocumentReference Reference = fStore.collection("ScoreBoard").document(userID);
         HashMap<String, Object> LBuser= new HashMap<>();
@@ -204,4 +204,6 @@ public class Register extends AppCompatActivity {
         });
 
     }
+
+     */
 }
