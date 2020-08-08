@@ -41,6 +41,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.quizapp.MainActivity2.soundState;
+import static com.example.quizapp.MainActivity2.vibrationState;
 import static com.example.quizapp.newSetActivity.time_lim;
 
 public class QuestionsActivity extends AppCompatActivity implements View.OnClickListener {
@@ -59,22 +61,20 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
     public static int setId;
     private FirebaseFirestore db ;
 
-///////////////////////////////something for the future//////////////////////////////////////
-//    @Override
-//    protected void onResume() {
-//        mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-//                SensorManager.SENSOR_DELAY_NORMAL);
-//        super.onResume();
-//        cameraView.start();                                                                          //to start camera
-//    }
-//
-//    @Override
-//    protected void onPause() {
-//        mSensorManager.unregisterListener(mSensorListener);
-//        super.onPause();
-//        cameraView.stop();  }                                                                        //to stop camera (when the activity gets paused)
 
-/////////////////////////////////////////////////////////////////////////////////////////////
+    @Override
+    protected void onResume() {
+        soundPool.autoResume();
+        super.onResume();
+
+    }
+
+    @Override
+    protected void onPause() {
+        soundPool.autoPause();
+        super.onPause();
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,12 +154,6 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
                 loading.cancel();
             }
         });
-//        questionsList.add(new Questions("Question 1","A","B","C","D",4));
-//        questionsList.add(new Questions("Question 2","A","B","C","D",1));
-//        questionsList.add(new Questions("Question 3","A","B","C","D",3));
-//        questionsList.add(new Questions("Question 4","A","B","C","D",2));
-//
-//        setQuestion();
     }
 
     private void setQuestion() {
@@ -189,11 +183,13 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
                 //Vibrate for 500 milliseconds
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
                 {
-                    v.vibrate(VibrationEffect.createOneShot(500,VibrationEffect.DEFAULT_AMPLITUDE));
+                    if(vibrationState)
+                        v.vibrate(VibrationEffect.createOneShot(500,VibrationEffect.DEFAULT_AMPLITUDE));
 
                 }else{
                     //deprecated inAPI 26
-                    v.vibrate(500);
+                    if(vibrationState)
+                        v.vibrate(500);
                 }
 
                 changeQuestion();
@@ -300,13 +296,13 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
     private void checkAnswer(int selectedOpt, View v) {
         if(selectedOpt == questionsList.get(qnum).getAnswer()) {
             //right answer
-            soundPool.play(correctans,1,1,0,0,1);
+            playRightSound(soundState);
             ((Button)v).setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
             score++;
 
         } else {
             //wrong answer
-            soundPool.play(wrongans,1,1,0,0,1);
+            playWrongSound(soundState);
             ((Button)v).setBackgroundTintList(ColorStateList.valueOf(Color.RED));
 
 
@@ -330,7 +326,8 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                soundPool.play(done,1,1,0,0,1);
+                if(soundState){
+                    soundPool.play(done,1,1,0,0,1);}
                 changeQuestion();
             }
         }, 2000);
@@ -366,5 +363,17 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
 
 
     }
+
+    public void playRightSound(boolean state) {
+        if(state)
+        soundPool.play(correctans,1,1,0,0,1);
+    }
+
+    public void playWrongSound(boolean state) {
+        if(state)
+        soundPool.play(wrongans,1,1,0,0,1);
+    }
+
+
 
 }
