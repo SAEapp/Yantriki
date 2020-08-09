@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:text="Sets"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="#46009F"
         android:textSize="26sp"
         android:textStyle="bold" />
 

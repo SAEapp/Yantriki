@@ -119,7 +119,7 @@ public class levelCard extends AppCompatActivity {
                             i.putExtra("Level_ID", position+1);
                         }
                         startActivity(i);
-                        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+                        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
                     }
                 });
             }
@@ -137,7 +137,7 @@ public class levelCard extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent = new Intent(levelCard.this,MainActivity2.class);
         startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
         finish();
     }
 

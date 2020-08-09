@@ -164,24 +164,15 @@ public class ProfileFragment extends Fragment {
                 i.putExtra("email",email.getText().toString());
                 i.putExtra("phone",phone.getText().toString());
                 startActivity(i);
-//
 
             }
         });
 
-//        log_outbtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                logout(v);
-//            }
-//        });
-
 
         return view;
     }
-//    public void logout(View view) {
-//        FirebaseAuth.getInstance().signOut();//logout
-//        startActivity(new Intent(getContext(),Login.class));
-//        getActivity().finish();}
+
+
+
 
 }

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -34,7 +35,8 @@ import java.util.Map;
 public class EditProfile extends AppCompatActivity {
 
     public static final String TAG = "TAG";
-    EditText profileFullName,profileEmail,profilePhone;
+    EditText profileFullName,profilePhone;
+    TextView profileEmail;
     ImageView profileImageView;
     Button saveBtn;
     FirebaseAuth fAuth;
@@ -113,7 +115,7 @@ public class EditProfile extends AppCompatActivity {
                                 finish();
                             }
                         });
-                        Toast.makeText(EditProfile.this, "Email is changed.", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(EditProfile.this, "Email is changed.", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

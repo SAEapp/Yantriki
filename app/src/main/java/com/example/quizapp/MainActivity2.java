@@ -52,7 +52,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("AUTOQUIZ");
+        getSupportActionBar().setTitle("Dashboard");
         navigationView = findViewById(R.id.nested);
 
 
@@ -116,8 +116,13 @@ public class MainActivity2 extends AppCompatActivity {
             return;
         }
 
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentContainer,new HomeFragment());
+        fragmentTransaction.commit();
+
         this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Press BACK again to exit", Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
 

@@ -181,7 +181,6 @@ public class SettingsFragment extends Fragment {
         editor.putBoolean(SWITCH3,pushNotif.isChecked());
 
         editor.apply();
-        Toast.makeText(getActivity(), "saved data", Toast.LENGTH_SHORT).show();
     }
 
     public void loadData() {

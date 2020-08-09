@@ -5,8 +5,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.Animator;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -253,7 +255,7 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
                                     break;
                             }
                             if(viewnum != 0)
-                                ((Button)v).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#241333")));
+                                ((Button)v).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#46009F")));
 
                             playAnim(v,1,viewnum);
                         }
@@ -333,19 +335,6 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
         }, 2000);
     }
 
-//    /**To handle orientation changes
-//     * */
-//    @Override
-//    protected void onSaveInstanceState(@NonNull Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//        outState.putString("Display Output",display.getText().toString());   //save textView output in our outstate bundle
-//    }
-//
-//    @Override
-//    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-//        super.onRestoreInstanceState(savedInstanceState);
-//        display.setText(savedInstanceState.getString("Display Output"));   //receiving and displaying the value from our saved instance state bundle
-//    }
 
     @Override
     protected void onDestroy() {
@@ -356,10 +345,28 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(QuestionsActivity.this,MainActivity2.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
-        finish();
+        AlertDialog.Builder dialoge = new AlertDialog.Builder(QuestionsActivity.this);
+        dialoge.setTitle("Are you sure?");
+        dialoge.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                countDownTimer.cancel();
+                Intent intent = new Intent(QuestionsActivity.this,MainActivity2.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+                finish();
+            }
+        });
+
+        dialoge.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alertDialog = dialoge.create();
+        alertDialog.show();
+
 
 
 
