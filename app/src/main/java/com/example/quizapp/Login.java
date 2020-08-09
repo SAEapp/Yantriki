@@ -65,10 +65,10 @@ public class Login extends AppCompatActivity {
                    return;
                }
                if (TextUtils.isEmpty(password)){
-                   mPassword.setError("Password is Req");
+                   mPassword.setError("Password is Required!");
                }
                if (password.length() < 6){
-                   mPassword.setError("Password must be >= 6 Characters");
+                   mPassword.setError("Password must be more than 6 characters.");
                    return;
                }
                waiting.show();

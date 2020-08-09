@@ -120,18 +120,22 @@ public class ProfileFragment extends Fragment {
 
                 final AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
                 passwordResetDialog.setTitle("Reset Password ?");
-                passwordResetDialog.setMessage("Enter New Password > 6 Characters long.");
+                passwordResetDialog.setMessage("Enter New Password:");
                 passwordResetDialog.setView(resetPassword);
 
                 passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // extract the email and send reset link
                         String newPassword = resetPassword.getText().toString();
-                        user.updatePassword(newPassword).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        // extract the email and send reset link
+                        if (newPassword.length() <= 6) {
+                            Toast.makeText(getContext(), "Password must be more than 6 characters", Toast.LENGTH_SHORT);
+                        } else {
+                            waiting.show();
+                            user.updatePassword(newPassword).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Toast.makeText(getContext(), "Password Reset Successfully.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "Password Reset Successful.", Toast.LENGTH_SHORT).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -139,6 +143,8 @@ public class ProfileFragment extends Fragment {
                                 Toast.makeText(getContext(), "Password Reset Failed.", Toast.LENGTH_SHORT).show();
                             }
                         });
+                            waiting.cancel();
+                    }
                     }
                 });
 

@@ -102,10 +102,23 @@ public class Register extends AppCompatActivity {
                     return;
                 }
                 if (TextUtils.isEmpty(password)){
-                    mPassword.setError("Password is Req");
+                    mPassword.setError("Password is Required!");
                 }
                 if (password.length() < 6){
-                    mPassword.setError("Password must be >= 6 Characters");
+                    mPassword.setError("Password too short!");
+                    return;
+                }
+                if(!phone.matches("[0-9]+")){
+                    mPhone.setError("Must be a number");
+                    return;
+                } else {
+                    if(phone.length() <10 || phone.length()>11){
+                        mPhone.setError("Invalid Number!");
+                        return;
+                    }
+                }
+                if(fullName.length()>13){
+                    mFullName.setError("Must be less than 13 characters.");
                     return;
                 }
                 waiting.show();
@@ -120,7 +133,7 @@ public class Register extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
 
-                                        Toast.makeText(Register.this, "User Created.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Register.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
                                         userID = fAuth.getCurrentUser().getUid();
                                         DocumentReference documentReference = fStore.collection("users").document(userID);
                                         Map<String,Object> user = new HashMap<>();
@@ -140,8 +153,6 @@ public class Register extends AppCompatActivity {
                                                 Log.d(TAG, "onFailure: " + e.toString());
                                             }
                                         });
-                                        //leaderboard(userID,fullName);
-
                                         startActivity(new Intent(getApplicationContext(), Login.class));
                                         overridePendingTransition(android.R.anim.fade_in, R.anim.zoom);
                                         finish();
@@ -149,28 +160,6 @@ public class Register extends AppCompatActivity {
                                 }
                             });
 
-                            /*Toast.makeText(Register.this, "User Created.", Toast.LENGTH_SHORT).show();
-                            userID = fAuth.getCurrentUser().getUid();
-                            DocumentReference documentReference = fStore.collection("users").document(userID);
-                            Map<String,Object> user = new HashMap<>();
-                            user.put("fName",fullName);
-                            user.put("email",email);
-                            user.put("phone",phone);
-                            user.put("total_score","0");
-                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Log.d(TAG, "onSuccess: user Profile is created for "+ userID);
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d(TAG, "onFailure: " + e.toString());
-                                }
-                            });
-                            leaderboard(userID,fullName);
-                            startActivity(new Intent(getApplicationContext(), MainActivity2.class));
-                            overridePendingTransition(android.R.anim.fade_in, R.anim.zoom);*/
                         }else{
                             Toast.makeText(Register.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             waiting.cancel();
@@ -187,25 +176,4 @@ public class Register extends AppCompatActivity {
         });
     }
 
-    //adding data for leaderboard
-
-    /*public void leaderboard(String UserID, String fname){
-
-        DocumentReference Reference = fStore.collection("ScoreBoard").document(userID);
-        HashMap<String, Object> LBuser= new HashMap<>();
-        LBuser.put("name", fname);
-        int userscore=0;
-        LBuser.put("scorenum", userscore);
-        LBuser.put("score", Integer.toString(userscore));
-        Reference.set(LBuser).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Log.i("LeaderBoard Data", "onSuccess: DataUpdated");
-            }
-
-        });
-
-    }
-
-     */
 }
