@@ -78,7 +78,7 @@ public class Register extends AppCompatActivity {
         mLoginBtn.startAnimation(alphaAnimation);
 
         imageView.setTranslationY(-600f);
-        ObjectAnimator animation = ObjectAnimator.ofFloat(imageView, "translationY", 0f);
+        ObjectAnimator animation = ObjectAnimator.ofFloat(imageView, "translationY", -3f);
         animation.setDuration(2000);
         animation.start();
 
