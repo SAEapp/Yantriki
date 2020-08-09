@@ -78,11 +78,11 @@ public class Register extends AppCompatActivity {
         mLoginBtn.startAnimation(alphaAnimation);
 
         imageView.setTranslationY(-600f);
-        ObjectAnimator animation = ObjectAnimator.ofFloat(imageView, "translationY", 0f);
+        ObjectAnimator animation = ObjectAnimator.ofFloat(imageView, "translationY", -3f);
         animation.setDuration(2000);
         animation.start();
 
-        if (fAuth.getCurrentUser() != null){
+        if (fAuth.getCurrentUser() != null && fAuth.getCurrentUser().isEmailVerified()){
             startActivity(new Intent(getApplicationContext(), MainActivity2.class));
             finish();
         }
@@ -141,6 +141,7 @@ public class Register extends AppCompatActivity {
                                             }
                                         });
                                         //leaderboard(userID,fullName);
+
                                         startActivity(new Intent(getApplicationContext(), Login.class));
                                         overridePendingTransition(android.R.anim.fade_in, R.anim.zoom);
                                         finish();

@@ -38,10 +38,10 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mEmail=findViewById(R.id.email);
-        mEmail.setHintTextColor(Color.rgb(103,58,183));
+        mEmail.setHintTextColor(Color.rgb(36,19,51));
 
         mPassword=findViewById(R.id.password);
-        mPassword.setHintTextColor(Color.rgb(103,58,183));
+        mPassword.setHintTextColor(Color.rgb(36,19,51));
 
        fAuth=FirebaseAuth.getInstance();
        mLoginBtn=findViewById(R.id.loginBtn);

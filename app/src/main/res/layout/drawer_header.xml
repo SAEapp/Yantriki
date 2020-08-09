@@ -34,5 +34,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView3"
         app:layout_constraintVertical_bias="0.47000003"
-        app:srcCompat="@drawable/logo_temp" />
+        app:srcCompat="@mipmap/appicon" />
 </androidx.constraintlayout.widget.ConstraintLayout>
