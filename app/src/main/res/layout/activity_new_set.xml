@@ -7,13 +7,14 @@
     tools:context=".newSetActivity"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
+   <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar1"
         android:layout_width="match_parent"
+        android:hapticFeedbackEnabled="true"
+        app:titleTextColor="#FFFFFF"
         android:layout_height="?actionBarSize"
         android:background="@color/colorPrimaryDark"
-        android:hapticFeedbackEnabled="true"
-        app:titleTextColor="#FFFFFF">
+        >
 
     </androidx.appcompat.widget.Toolbar>
 

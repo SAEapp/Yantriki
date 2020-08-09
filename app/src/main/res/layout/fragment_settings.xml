@@ -138,7 +138,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@color/colorPrimary"
-
+                android:textSize="20sp"
                 android:text="  Edit Profile"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
@@ -167,7 +167,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@color/colorPrimary"
-
+                android:textSize="20sp"
                 android:text="  Delete Account"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
@@ -235,11 +235,11 @@
                 android:id="@+id/logoutButton1"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="@color/color4"
+                android:background="#ffffff"
                 android:text="  Log Out"
                 android:textAllCaps="false"
                 android:textColor="#95000000"
-
+                android:textSize="20sp"
                 android:textAlignment="viewStart"
                 />
         </LinearLayout>

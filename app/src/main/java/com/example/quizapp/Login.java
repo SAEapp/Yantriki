@@ -105,8 +105,9 @@ public class Login extends AppCompatActivity {
         mCreateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Register.class));
+                startActivity(new Intent(Login.this,Register.class));
                 overridePendingTransition(android.R.anim.fade_in, R.anim.zoom);
+                finish();
             }
         });
         forgotTextLink.setOnClickListener(new View.OnClickListener() {

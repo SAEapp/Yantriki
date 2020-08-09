@@ -253,7 +253,7 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
                                     break;
                             }
                             if(viewnum != 0)
-                                ((Button)v).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#BD4ED5")));
+                                ((Button)v).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#241333")));
 
                             playAnim(v,1,viewnum);
                         }
@@ -358,6 +358,7 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
     public void onBackPressed() {
         Intent intent = new Intent(QuestionsActivity.this,MainActivity2.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
         finish();
 
 
