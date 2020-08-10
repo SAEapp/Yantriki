@@ -48,10 +48,11 @@
     </LinearLayout>
 
     <View
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@drawable/background_gradient"
-        android:visibility="invisible"/>
+        android:layout_marginLeft="40dp"
+        android:background="@color/colorPrimaryDark"
+        android:visibility="visible"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -81,10 +82,11 @@
     </LinearLayout>
 
     <View
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@drawable/background_gradient"
-        android:visibility="invisible"/>
+        android:layout_marginLeft="40dp"
+        android:background="@color/colorPrimaryDark"
+        android:visibility="visible"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -112,6 +114,12 @@
             app:thumbTint="@color/colorPrimaryDark"
             app:trackTint="@color/ic_launcher_background" />
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="40dp"
+        android:background="@color/colorPrimaryDark"
+        android:visibility="visible"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -144,19 +152,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@color/colorPrimary"
-                android:textSize="20sp"
                 android:text="@string/edit_profile"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
                 android:textColor="#95000000"
-                 />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <View
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@drawable/background_gradient"
-            android:visibility="invisible"/>
+            android:layout_marginLeft="35dp"
+            android:background="@color/colorPrimaryDark"
+            android:visibility="visible"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -180,6 +188,13 @@
                 android:textColor="#95000000"
                 />
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="35dp"
+            android:background="@color/colorPrimaryDark"
+            android:visibility="visible"/>
 
     </LinearLayout>
 
@@ -223,10 +238,11 @@
         </LinearLayout>
 
         <View
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@drawable/background_gradient"
-            android:visibility="invisible"/>
+            android:layout_marginLeft="35dp"
+            android:background="@color/colorPrimaryDark"
+            android:visibility="visible"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -249,6 +265,13 @@
                 android:textAlignment="viewStart"
                 />
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="35dp"
+            android:background="@color/colorPrimaryDark"
+            android:visibility="visible"/>
 
     </LinearLayout>
 
