@@ -98,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
-                android:text="About"
+                android:text="@string/about"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:visibility="invisible"
@@ -112,7 +112,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
-                android:text="The vision of the club is to give young engineers an opportunity to showcase their talents, simultaneously providing a platform to learn and gain expertise in the field of automobiles."
+                android:text="@string/the_vision_of_the_club_is_to_give_young_engineers_an_opportunity_to_showcase_their_talents_simultaneously_providing_a_platform_to_learn_and_gain_expertise_in_the_field_of_automobiles"
                 android:textAlignment="textStart"
                 android:textSize="16sp"
                 android:visibility="invisible"
@@ -127,7 +127,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginBottom="16dp"
                 android:alpha="0.6"
-                android:text="Developers"
+                android:text="@string/developers"
                 android:textSize="24sp"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/bodyDevelopers"
@@ -152,28 +152,28 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Anant" />
+                    android:text="@string/anant" />
 
                 <TextView
                     android:id="@+id/textView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Anushree" />
+                    android:text="@string/anushree" />
 
                 <TextView
                     android:id="@+id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Simran" />
+                    android:text="@string/simran" />
 
                 <TextView
                     android:id="@+id/textView10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Vibhanshu" />
+                    android:text="@string/vibhanshu" />
             </LinearLayout>
 
             <TextView
@@ -182,7 +182,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
-                android:text="To contribute to this, AutoQuiz helps students to test their knowledge in the field of Automobile with questions of varying difficulty."
+                android:text="@string/to_contribute_to_this_autoquiz_helps_students_to_test_their_knowledge_in_the_field_of_automobile_with_questions_of_varying_difficulty"
                 android:textSize="16sp"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -197,7 +197,7 @@
                 android:layout_marginEnd="155dp"
                 android:layout_marginBottom="8dp"
                 android:alpha="0.6"
-                android:text="Version 1.0."
+                android:text="@string/version_1_0_2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

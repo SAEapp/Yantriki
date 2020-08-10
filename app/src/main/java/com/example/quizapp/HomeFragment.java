@@ -18,7 +18,6 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -29,7 +28,6 @@ public class HomeFragment extends Fragment {
 
     public static List<String> levelsList = new ArrayList<>();
     private Button startbtn;
-    //    private Button logoutbtn,profilebtn;
     private FirebaseFirestore firestore;
     private Dialog loading;
     private ImageView back;
@@ -37,24 +35,23 @@ public class HomeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home , container , false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         startbtn = view.findViewById(R.id.start1);
 
 
-        back=view.findViewById(R.id.fragHomeBack);
+        back = view.findViewById(R.id.fragHomeBack);
         back.setTranslationY(-100f);
         ObjectAnimator animation = ObjectAnimator.ofFloat(back, "translationY", 0f);
         animation.setDuration(1000);
         animation.start();
 
-        AlphaAnimation alphaAnimation= new AlphaAnimation(0.5f,1f);
+        AlphaAnimation alphaAnimation = new AlphaAnimation(0.5f, 1f);
         alphaAnimation.setDuration(1000);
         alphaAnimation.setStartOffset(0);
         alphaAnimation.setFillAfter(true);
         back.setAnimation(alphaAnimation);
         startbtn.setAnimation(alphaAnimation);
-
 
 
         loading = new Dialog(getActivity());
@@ -93,14 +90,11 @@ public class HomeFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
-                if(task.isSuccessful())
-                {
+                if (task.isSuccessful()) {
                     DocumentSnapshot doc = task.getResult();
 
-                    if(doc.exists())
-                    {
-                        long count = (long)doc.get("count");
-
+                    if (doc.exists()) {
+                        long count = (long) doc.get("count");
 
 
                         for (int i = 1; i <= count; i++) {
@@ -112,10 +106,8 @@ public class HomeFragment extends Fragment {
                         Intent intent = new Intent(getActivity(), levelCard.class);
                         startActivity(intent);
 
-                    }
-                    else
-                    {
-                        Toast.makeText(getActivity(),"No Levels Document Exists!",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getActivity(), "No Levels Document Exists!", Toast.LENGTH_SHORT).show();
                     }
                     getActivity().finish();
 
