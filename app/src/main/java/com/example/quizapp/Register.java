@@ -32,13 +32,13 @@ import java.util.Map;
 
 public class Register extends AppCompatActivity {
     public static final String TAG = "TAG";
-    EditText mFullName, mEmail, mPassword, mPhone;
-    Button mRegisterBtn;
-    TextView mLoginBtn;
-    FirebaseAuth fAuth;
-    FirebaseFirestore fStore;
-    String userID;
-    ImageView imageView;
+    private EditText mFullName, mEmail, mPassword, mPhone;
+    private Button mRegisterBtn;
+    private TextView mLoginBtn;
+    private FirebaseAuth fAuth;
+    private FirebaseFirestore fStore;
+    private String userID;
+    private ImageView imageView;
     private Dialog waiting;
 
     @Override
@@ -171,6 +171,7 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), Login.class));
+                finish();
             }
         });
     }
