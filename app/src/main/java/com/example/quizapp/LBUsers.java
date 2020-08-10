@@ -2,7 +2,7 @@ package com.example.quizapp;
 
 public class LBUsers {
 
-    String fName,phone,email;
+    String fName, phone, email;
     int full_score;
 
     public String getfName() {
@@ -42,6 +42,7 @@ public class LBUsers {
         this.full_score = full_score;
     }
 
-    public LBUsers() {}
+    public LBUsers() {
+    }
 
 }

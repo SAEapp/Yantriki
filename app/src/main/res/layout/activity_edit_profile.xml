@@ -4,19 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity2">
+    tools:context=".EditProfile">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBack">
+        android:background="@color/colorPrimaryDark">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorLayerBack">
+            android:background="#46009F">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -50,33 +50,26 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100sp"
             android:padding="50px"
             android:paddingTop="70px"
             android:gravity="center"
-            android:background="@drawable/secondlayer">
+            android:background="#46009F">
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="60sp"
                 android:orientation="vertical"
                 android:gravity="center">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="200"
+                    android:text="Click on the parameter to change it."
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textColor="@color/color4"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Score"
-                    android:textSize="18sp"
-                    android:textStyle="normal"
-                    android:textColor="@color/colorSubTitle"/>
 
             </LinearLayout>
 
@@ -124,7 +117,7 @@
                         android:textStyle="bold" />
                 </LinearLayout>
 
-                <EditText
+                <TextView
                     android:id="@+id/email_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -194,7 +187,7 @@
                 android:id="@+id/saveButton"
                 android:layout_width="278dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="35dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/round_white"
                 android:text="Save"

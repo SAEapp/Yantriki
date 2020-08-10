@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Switch;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,11 +36,11 @@ import static com.example.quizapp.MainActivity2.vibrationState;
 public class SettingsFragment extends Fragment {
 
     private FirebaseUser user;
-    private String userId,phone,fullName,email;
+    private String userId, phone, fullName, email;
     private FirebaseAuth fAuth;
     private FirebaseFirestore fStore;
-    private Button log_outbtn,editProfile,deleteAccount,about;
-    public static Switch soundEffects,vibrations,pushNotif;
+    private Button log_outbtn, editProfile, deleteAccount, about;
+    public static Switch soundEffects, vibrations, pushNotif;
     private Dialog waiting;
 
     public static final String SHARED_PREFS = "sharedPrefs";
@@ -51,11 +49,10 @@ public class SettingsFragment extends Fragment {
     public static final String SWITCH3 = "switch3";   //push notif
 
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_settings , container , false);
+        View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
         log_outbtn = view.findViewById(R.id.logoutButton1);
         editProfile = view.findViewById(R.id.edit_profile);
@@ -63,13 +60,13 @@ public class SettingsFragment extends Fragment {
         deleteAccount = view.findViewById(R.id.delete_account);
         soundEffects = view.findViewById(R.id.sounds_switch);
         vibrations = view.findViewById(R.id.vibration_switch);
-        pushNotif  = view.findViewById(R.id.push_notif_switch);
+        pushNotif = view.findViewById(R.id.push_notif_switch);
 
         waiting = new Dialog(getActivity());
         waiting.setContentView(R.layout.waiting_progressbar);
         waiting.setCancelable(true);
         waiting.getWindow().setBackgroundDrawableResource(R.drawable.progress_background);
-        waiting.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        waiting.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         loadData();
 
@@ -79,7 +76,6 @@ public class SettingsFragment extends Fragment {
         pushNotif.setChecked(pushNotificationState);
 
 
-
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
@@ -87,19 +83,20 @@ public class SettingsFragment extends Fragment {
         user = fAuth.getCurrentUser();
 
         DocumentReference documentReference = fStore.collection("users").document(userId);
-        documentReference.addSnapshotListener( new EventListener<DocumentSnapshot>() {
+        documentReference.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
-                if(documentSnapshot.exists()){
+                if (documentSnapshot.exists()) {
                     phone = documentSnapshot.getString("phone");
                     fullName = documentSnapshot.getString("fName");
                     email = documentSnapshot.getString("email");
 
-                }else {
+                } else {
                     Log.d("tag", "onEvent: Document do not exists");
                 }
             }
         });
+
 
         deleteAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,10 +113,10 @@ public class SettingsFragment extends Fragment {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 waiting.cancel();
-                                if(task.isSuccessful()) {
+                                if (task.isSuccessful()) {
                                     Toast.makeText(getActivity(), "Account deleted", Toast.LENGTH_LONG).show();
 
-                                    Intent i = new Intent(getActivity(),Login.class);
+                                    Intent i = new Intent(getActivity(), Login.class);
                                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(i);
@@ -146,7 +143,7 @@ public class SettingsFragment extends Fragment {
         about.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(),AboutAppActivity.class);
+                Intent i = new Intent(getActivity(), AboutAppActivity.class);
                 startActivity(i);
             }
         });
@@ -154,10 +151,10 @@ public class SettingsFragment extends Fragment {
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(v.getContext(),EditProfile.class);
-                i.putExtra("fullName",fullName);
-                i.putExtra("email",email);
-                i.putExtra("phone",phone);
+                Intent i = new Intent(v.getContext(), EditProfile.class);
+                i.putExtra("fullName", fullName);
+                i.putExtra("email", email);
+                i.putExtra("phone", phone);
                 startActivity(i);
 
             }
@@ -176,19 +173,18 @@ public class SettingsFragment extends Fragment {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putBoolean(SWITCH1,soundEffects.isChecked());
-        editor.putBoolean(SWITCH2,vibrations.isChecked());
-        editor.putBoolean(SWITCH3,pushNotif.isChecked());
+        editor.putBoolean(SWITCH1, soundEffects.isChecked());
+        editor.putBoolean(SWITCH2, vibrations.isChecked());
+        editor.putBoolean(SWITCH3, pushNotif.isChecked());
 
         editor.apply();
-        Toast.makeText(getActivity(), "saved data", Toast.LENGTH_SHORT).show();
     }
 
     public void loadData() {
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS,Context.MODE_PRIVATE);
-        soundState = sharedPreferences.getBoolean(SWITCH1,true);
-        vibrationState = sharedPreferences.getBoolean(SWITCH2,true);
-        pushNotificationState = sharedPreferences.getBoolean(SWITCH3,true);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        soundState = sharedPreferences.getBoolean(SWITCH1, true);
+        vibrationState = sharedPreferences.getBoolean(SWITCH2, true);
+        pushNotificationState = sharedPreferences.getBoolean(SWITCH3, true);
     }
 
     @Override
@@ -199,6 +195,8 @@ public class SettingsFragment extends Fragment {
 
     public void logout(View view) {
         FirebaseAuth.getInstance().signOut();      //logout
-        startActivity(new Intent(getContext(),Login.class));
-        getActivity().finish();}
+        startActivity(new Intent(getContext(), Login.class));
+        getActivity().finish();
+    }
+
 }

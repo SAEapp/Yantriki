@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment {
         loading.setContentView(R.layout.loading_progressbar);
         loading.setCancelable(false);
         loading.getWindow().setBackgroundDrawableResource(R.drawable.progress_background);
-        loading.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        loading.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
 
         firestore = FirebaseFirestore.getInstance();
@@ -140,19 +140,14 @@ public class HomeFragment extends Fragment {
 
                             levelsList.add(levelName);
                         }
-                        loading.cancel();
                         Intent intent = new Intent(getActivity(),levelCard.class);
-
                         startActivity(intent);
-
                         getActivity().finish();
-
                     }
                     else
                     {
                         Toast.makeText(getActivity(),"No Levels Document Exists!",Toast.LENGTH_SHORT).show();
                         getActivity().finish();
-                        loading.cancel();
                     }
 
                 }
@@ -160,9 +155,8 @@ public class HomeFragment extends Fragment {
                 {
 
                     Toast.makeText(getActivity(),task.getException().getMessage(),Toast.LENGTH_SHORT).show();
-                    loading.cancel();
                 }
-
+                loading.cancel();
             }
         });
     }

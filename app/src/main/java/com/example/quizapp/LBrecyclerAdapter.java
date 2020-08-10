@@ -13,30 +13,31 @@ import java.util.List;
 public class LBrecyclerAdapter extends RecyclerView.Adapter<LBrecyclerAdapter.ViewHolder> {
 
     public List<LBUsers> lbUsersList;
-    public LBrecyclerAdapter(List<LBUsers> lbUsersList){
-        this.lbUsersList=lbUsersList;
+
+    public LBrecyclerAdapter(List<LBUsers> lbUsersList) {
+        this.lbUsersList = lbUsersList;
     }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.leadboardlist,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.leadboardlist, parent, false);
 
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String Name= lbUsersList.get(position).getfName();
+        String Name = lbUsersList.get(position).getfName();
         holder.setname(Name);
 
-        String Score= String.valueOf(lbUsersList.get(position).getFull_score());
+        String Score = String.valueOf(lbUsersList.get(position).getFull_score());
 
         holder.setscore(Score);
 
-        String Rank= Integer.toString(position+1);
+        String Rank = Integer.toString(position + 1);
         holder.setRank(Rank);
-
 
 
     }
@@ -46,7 +47,7 @@ public class LBrecyclerAdapter extends RecyclerView.Adapter<LBrecyclerAdapter.Vi
         return lbUsersList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView name;
         private TextView score;
@@ -55,22 +56,24 @@ public class LBrecyclerAdapter extends RecyclerView.Adapter<LBrecyclerAdapter.Vi
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mview=itemView;
+            mview = itemView;
         }
-        public void setname(String nametxt){
-            name=mview.findViewById(R.id.listName);
+
+        public void setname(String nametxt) {
+            name = mview.findViewById(R.id.listName);
             name.setText(nametxt);
         }
-        public void setscore(String scoretxt){
-            score=mview.findViewById(R.id.listScore);
+
+        public void setscore(String scoretxt) {
+            score = mview.findViewById(R.id.listScore);
             score.setText(scoretxt);
         }
-        public void setRank(String ranktxt){
-            rank=mview.findViewById(R.id.listRank);
+
+        public void setRank(String ranktxt) {
+            rank = mview.findViewById(R.id.listRank);
             rank.setText(ranktxt);
         }
     }
-
 
 
 }

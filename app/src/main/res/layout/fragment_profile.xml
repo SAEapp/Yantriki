@@ -8,13 +8,13 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBack">
+        android:background="@color/colorPrimaryDark">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorLayerBack">
+            android:background="#46009F">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -52,7 +52,7 @@
             android:padding="50px"
             android:paddingTop="70px"
             android:gravity="center"
-            android:background="@drawable/secondlayer">
+            android:background="#46009F">
 
             <LinearLayout
                 android:layout_width="wrap_content"

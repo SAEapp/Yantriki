@@ -1,24 +1,17 @@
 package com.example.quizapp;
 
-import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.animation.Animator;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
-
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -31,6 +24,9 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -47,19 +43,19 @@ import static com.example.quizapp.newSetActivity.time_lim;
 
 public class QuestionsActivity extends AppCompatActivity implements View.OnClickListener {
     private SoundPool soundPool;
-    private int done,insight,wrongans,correctans;
-    private TextView questiondis,qnumdis;
+    private int done, insight, wrongans, correctans;
+    private TextView questiondis, qnumdis;
     private TextView counter;
     private int qnum;
-    private int set_num,level_id;
+    private int set_num, level_id;
     private Dialog loading;
-    private Button opt1,opt2,opt3,opt4;
+    private Button opt1, opt2, opt3, opt4;
     private List<Questions> questionsList;
     CountDownTimer countDownTimer;
     MediaPlayer mediaPlayer;
-    int score =0;
+    int score = 0;
     public static int setId;
-    private FirebaseFirestore db ;
+    private FirebaseFirestore db;
 
 
     @Override
@@ -81,8 +77,7 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questions);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-        {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             AudioAttributes audioAttributes = new AudioAttributes.Builder()
                     .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
                     .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
@@ -91,15 +86,14 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
                     .setMaxStreams(6)
                     .setAudioAttributes(audioAttributes)
                     .build();
-        }else
-        {
-            soundPool = new SoundPool(6, AudioManager.STREAM_MUSIC,0);
+        } else {
+            soundPool = new SoundPool(6, AudioManager.STREAM_MUSIC, 0);
 
         }
-        done = soundPool.load(this,R.raw.done,1);
-        insight = soundPool.load(this,R.raw.insight,1);
-        wrongans = soundPool.load(this,R.raw.wrongans,1);
-        correctans = soundPool.load(this,R.raw.correctans,1);
+        done = soundPool.load(this, R.raw.done, 1);
+        insight = soundPool.load(this, R.raw.insight, 1);
+        wrongans = soundPool.load(this, R.raw.wrongans, 1);
+        correctans = soundPool.load(this, R.raw.correctans, 1);
         questiondis = findViewById(R.id.question);
         counter = findViewById(R.id.countdown);
         qnumdis = findViewById(R.id.quest_count);
@@ -113,12 +107,12 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
         loading.setContentView(R.layout.loading_progressbar);
         loading.setCancelable(false);
         loading.getWindow().setBackgroundDrawableResource(R.drawable.progress_background);
-        loading.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        loading.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
 
-        set_num = getIntent().getIntExtra("set_id",1);
-        setId=set_num;
-        level_id=getIntent().getIntExtra("level",1);
+        set_num = getIntent().getIntExtra("set_id", 1);
+        setId = set_num;
+        level_id = getIntent().getIntExtra("level", 1);
 
         opt1.setOnClickListener(this);
         opt2.setOnClickListener(this);
@@ -130,26 +124,25 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
     }
 
 
-
     private void getQuestionsList() {
         loading.show();
         questionsList = new ArrayList<>();
-        db.collection("Quizes").document("Level-"+ String.valueOf(level_id)).collection("set-" + String.valueOf(set_num)).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection("Quizes").document("Level-" + String.valueOf(level_id)).collection("set-" + String.valueOf(set_num)).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()) {
+                if (task.isSuccessful()) {
 //                    QuerySnapshot quests = task.getResult();
-                    for(QueryDocumentSnapshot doc : task.getResult()){
+                    for (QueryDocumentSnapshot doc : task.getResult()) {
                         questionsList.add(new Questions(doc.getString("quest")
-                                ,doc.getString("a")
-                                ,doc.getString("b")
-                                ,doc.getString("c")
-                                ,doc.getString("d")
-                                ,Integer.parseInt(doc.getString("ans"))));
+                                , doc.getString("a")
+                                , doc.getString("b")
+                                , doc.getString("c")
+                                , doc.getString("d")
+                                , Integer.parseInt(doc.getString("ans"))));
                     }
                     setQuestion();
                 } else {
-                    Toast.makeText(QuestionsActivity.this, (CharSequence) task.getException(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(QuestionsActivity.this, (CharSequence) task.getException(), Toast.LENGTH_SHORT).show();
                 }
                 loading.cancel();
             }
@@ -170,25 +163,24 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void startCounter() {
-        countDownTimer = new CountDownTimer(time_lim*1000,1000) {
+        countDownTimer = new CountDownTimer(time_lim * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                counter.setText(String.valueOf(millisUntilFinished/1000));
+                counter.setText(String.valueOf(millisUntilFinished / 1000));
 
             }
 
             @Override
             public void onFinish() {
-                Vibrator v = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+                Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                 //Vibrate for 500 milliseconds
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                {
-                    if(vibrationState)
-                        v.vibrate(VibrationEffect.createOneShot(500,VibrationEffect.DEFAULT_AMPLITUDE));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    if (vibrationState)
+                        v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
 
-                }else{
+                } else {
                     //deprecated inAPI 26
-                    if(vibrationState)
+                    if (vibrationState)
                         v.vibrate(500);
                 }
 
@@ -199,15 +191,15 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void changeQuestion() {
-        if(qnum<questionsList.size()-1) {
+        if (qnum < questionsList.size() - 1) {
             qnum++;
-            playAnim(questiondis,0,0);
-            playAnim(opt1,0,1);
-            playAnim(opt2,0,2);
-            playAnim(opt3,0,3);
-            playAnim(opt4,0,4);
+            playAnim(questiondis, 0, 0);
+            playAnim(opt1, 0, 1);
+            playAnim(opt2, 0, 2);
+            playAnim(opt3, 0, 3);
+            playAnim(opt4, 0, 4);
 
-            qnumdis.setText(String.valueOf(qnum+1) + "/" + String.valueOf(questionsList.size()));
+            qnumdis.setText(String.valueOf(qnum + 1) + "/" + String.valueOf(questionsList.size()));
             counter.setText(String.valueOf(10));
             startCounter();
 
@@ -215,9 +207,9 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
         } else {
             //show score
             countDownTimer.cancel();
-            Intent intent = new Intent(QuestionsActivity.this,ScoreActivity.class);
-            intent.putExtra("Score",score);
-            intent.putExtra("TotalQ",questionsList.size());
+            Intent intent = new Intent(QuestionsActivity.this, ScoreActivity.class);
+            intent.putExtra("Score", score);
+            intent.putExtra("TotalQ", questionsList.size());
             startActivity(intent);
             finish();
         }
@@ -234,28 +226,28 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
 
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        if(val == 0) {
-                            switch(viewnum){
-                                case 0 :
-                                    ((TextView)v).setText(questionsList.get(qnum).getQuestion());
+                        if (val == 0) {
+                            switch (viewnum) {
+                                case 0:
+                                    ((TextView) v).setText(questionsList.get(qnum).getQuestion());
                                     break;
-                                case 1 :
-                                    ((Button)v).setText(questionsList.get(qnum).getOptionA());
+                                case 1:
+                                    ((Button) v).setText(questionsList.get(qnum).getOptionA());
                                     break;
-                                case 2 :
-                                    ((Button)v).setText(questionsList.get(qnum).getOptionB());
+                                case 2:
+                                    ((Button) v).setText(questionsList.get(qnum).getOptionB());
                                     break;
-                                case 3 :
-                                    ((Button)v).setText(questionsList.get(qnum).getOptionC());
+                                case 3:
+                                    ((Button) v).setText(questionsList.get(qnum).getOptionC());
                                     break;
-                                case 4 :
-                                    ((Button)v).setText(questionsList.get(qnum).getOptionD());
+                                case 4:
+                                    ((Button) v).setText(questionsList.get(qnum).getOptionD());
                                     break;
                             }
-                            if(viewnum != 0)
-                                ((Button)v).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#BD4ED5")));
+                            if (viewnum != 0)
+                                ((Button) v).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#46009F")));
 
-                            playAnim(v,1,viewnum);
+                            playAnim(v, 1, viewnum);
                         }
                     }
 
@@ -274,36 +266,36 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         int selectedOpt = 0;
-        switch(v.getId()) {
-            case R.id.opt1 :
+        switch (v.getId()) {
+            case R.id.opt1:
                 selectedOpt = 1;
                 break;
-            case R.id.opt2 :
+            case R.id.opt2:
                 selectedOpt = 2;
                 break;
-            case R.id.opt3 :
+            case R.id.opt3:
                 selectedOpt = 3;
                 break;
-            case R.id.opt4 :
+            case R.id.opt4:
                 selectedOpt = 4;
                 break;
             default:
         }
         countDownTimer.cancel();
-        checkAnswer(selectedOpt,v) ;
+        checkAnswer(selectedOpt, v);
     }
 
     private void checkAnswer(int selectedOpt, View v) {
-        if(selectedOpt == questionsList.get(qnum).getAnswer()) {
+        if (selectedOpt == questionsList.get(qnum).getAnswer()) {
             //right answer
             playRightSound(soundState);
-            ((Button)v).setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+            ((Button) v).setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
             score++;
 
         } else {
             //wrong answer
             playWrongSound(soundState);
-            ((Button)v).setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+            ((Button) v).setBackgroundTintList(ColorStateList.valueOf(Color.RED));
 
 
             switch (questionsList.get(qnum).getAnswer()) {
@@ -326,54 +318,58 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(soundState){
-                    soundPool.play(done,1,1,0,0,1);}
+                if (soundState) {
+                    soundPool.play(done, 1, 1, 0, 0, 1);
+                }
                 changeQuestion();
             }
         }, 2000);
     }
 
-//    /**To handle orientation changes
-//     * */
-//    @Override
-//    protected void onSaveInstanceState(@NonNull Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//        outState.putString("Display Output",display.getText().toString());   //save textView output in our outstate bundle
-//    }
-//
-//    @Override
-//    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-//        super.onRestoreInstanceState(savedInstanceState);
-//        display.setText(savedInstanceState.getString("Display Output"));   //receiving and displaying the value from our saved instance state bundle
-//    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         soundPool.release();
-        soundPool=null;
+        soundPool = null;
     }
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(QuestionsActivity.this,MainActivity2.class);
-        startActivity(intent);
-        finish();
+        AlertDialog.Builder dialoge = new AlertDialog.Builder(QuestionsActivity.this);
+        dialoge.setTitle("Are you sure?");
+        dialoge.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                countDownTimer.cancel();
+                Intent intent = new Intent(QuestionsActivity.this, MainActivity2.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                finish();
+            }
+        });
 
+        dialoge.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alertDialog = dialoge.create();
+        alertDialog.show();
 
 
     }
 
     public void playRightSound(boolean state) {
-        if(state)
-        soundPool.play(correctans,1,1,0,0,1);
+        if (state)
+            soundPool.play(correctans, 1, 1, 0, 0, 1);
     }
 
     public void playWrongSound(boolean state) {
-        if(state)
-        soundPool.play(wrongans,1,1,0,0,1);
+        if (state)
+            soundPool.play(wrongans, 1, 1, 0, 0, 1);
     }
-
 
 
 }
