@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/aboutback"
-    android:onClick="openBrowser"
     tools:context=".AboutAppActivity">
 
     <ImageView
@@ -108,14 +107,16 @@
 
             <TextView
                 android:id="@+id/bodyAbout1"
-                android:layout_width="314dp"
+                android:layout_width="0dp"
                 android:layout_height="127dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
                 android:text="The vision of the club is to give young engineers an opportunity to showcase their talents, simultaneously providing a platform to learn and gain expertise in the fields of Research and Development, manufacturing associated with automobiles."
                 android:textAlignment="textStart"
                 android:textSize="16sp"
                 android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/headAbout" />
 
@@ -177,12 +178,14 @@
 
             <TextView
                 android:id="@+id/aboutBody2"
-                android:layout_width="318dp"
+                android:layout_width="0dp"
                 android:layout_height="83dp"
                 android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
                 android:text="To contribute to this, AutoQuiz helps students to test their knowledge in the field of Automobile with questions of varying difficulty."
                 android:textSize="16sp"
                 android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bodyAbout1" />
 
