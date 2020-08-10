@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="32dp"
+        android:paddingStart="32dp"
         app:cardBackgroundColor="@color/colorPrimaryDark"
         app:cardCornerRadius="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -27,7 +27,7 @@
                 android:id="@+id/quizname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Quiz Name"
+                android:text="@string/quiz_name"
                 android:textAllCaps="true"
                 android:textColor="#FFFFFF"
 
@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="Quiz Description"
+                android:text="@string/quiz_description"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"

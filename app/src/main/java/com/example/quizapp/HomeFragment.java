@@ -79,7 +79,7 @@ public class HomeFragment extends Fragment {
                         long count = (long) doc.get("count");
 
                         for (int i = 1; i <= count; i++) {
-                            String levelName = doc.getString("level-" + String.valueOf(i));
+                            String levelName = doc.getString("level-" + i);
                             // String catID = doc.getString("CAT" + String.valueOf(i) + "_ID");
 
                             levelsList.add(levelName);

@@ -127,7 +127,7 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
     private void getQuestionsList() {
         loading.show();
         questionsList = new ArrayList<>();
-        db.collection("Quizes").document("Level-" + String.valueOf(level_id)).collection("set-" + String.valueOf(set_num)).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection("Quizes").document("Level-" + level_id).collection("set-" + set_num).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
@@ -157,7 +157,7 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
         opt3.setText(questionsList.get(qnum).getOptionC());
         opt4.setText(questionsList.get(qnum).getOptionD());
 
-        qnumdis.setText(String.valueOf(qnum) + "/" + String.valueOf(questionsList.size()));
+        qnumdis.setText(qnum + "/" + questionsList.size());
         startCounter();
         qnum = 0;
     }
@@ -199,7 +199,7 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
             playAnim(opt3, 0, 3);
             playAnim(opt4, 0, 4);
 
-            qnumdis.setText(String.valueOf(qnum + 1) + "/" + String.valueOf(questionsList.size()));
+            qnumdis.setText((qnum + 1) + "/" + questionsList.size());
             counter.setText(String.valueOf(10));
             startCounter();
 
@@ -245,7 +245,7 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
                                     break;
                             }
                             if (viewnum != 0)
-                                ((Button) v).setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#46009F")));
+                                v.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#46009F")));
 
                             playAnim(v, 1, viewnum);
                         }
@@ -289,13 +289,13 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
         if (selectedOpt == questionsList.get(qnum).getAnswer()) {
             //right answer
             playRightSound(soundState);
-            ((Button) v).setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+            v.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
             score++;
 
         } else {
             //wrong answer
             playWrongSound(soundState);
-            ((Button) v).setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+            v.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
 
 
             switch (questionsList.get(qnum).getAnswer()) {
