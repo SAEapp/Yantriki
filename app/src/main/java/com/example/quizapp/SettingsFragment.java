@@ -163,10 +163,27 @@ public class SettingsFragment extends Fragment {
 
         log_outbtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                logout(v);
+            public void onClick(final View v) {
+                AlertDialog.Builder dialoge = new AlertDialog.Builder(getContext());
+                dialoge.setTitle("Are you sure?");
+                dialoge.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        logout(v);
+                    }
+                });
+
+                dialoge.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog alertDialog = dialoge.create();
+                alertDialog.show();
             }
-        });
+        }) ;
         return view;
     }
 
