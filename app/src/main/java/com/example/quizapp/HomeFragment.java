@@ -27,10 +27,10 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    private Button startbtn;
-//    private Button logoutbtn,profilebtn;
-    private FirebaseFirestore firestore;
     public static List<String> levelsList = new ArrayList<>();
+    private Button startbtn;
+    //    private Button logoutbtn,profilebtn;
+    private FirebaseFirestore firestore;
     private Dialog loading;
     private ImageView back;
 
@@ -40,16 +40,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home , container , false);
 
         startbtn = view.findViewById(R.id.start1);
-//        logoutbtn = view.findViewById(R.id.button1);
-//        profilebtn = view.findViewById(R.id.profile_button1);
 
-//        Button leaderboard= view.findViewById(R.id.leaderboard1);
-//        leaderboard.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getActivity(), LeaderBoard.class));
-//            }
-//        });
 
         back=view.findViewById(R.id.fragHomeBack);
         back.setTranslationY(-100f);
@@ -75,15 +66,6 @@ public class HomeFragment extends Fragment {
 
         firestore = FirebaseFirestore.getInstance();
 
-//        logoutbtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                logout(v);
-////                Intent intent = new Intent(getActivity(),MainActivity2.class);
-////                startActivity(intent);
-//            }
-//        });
-
         startbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,23 +83,9 @@ public class HomeFragment extends Fragment {
             }
         });
 
-//        profilebtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Intent intent = new Intent(getActivity(),Profile.class);
-//                startActivity(intent);
-//
-//            }
-//        });
         return view;
     }
 
-//    public void logout(View view){
-//        FirebaseAuth.getInstance().signOut();
-//        startActivity(new Intent(getActivity(),Login.class));
-//        getActivity().finish();
-//    }
     private void loadData() {
         levelsList.clear();
         firestore.collection("Quizes").document("Levels")
@@ -136,12 +104,15 @@ public class HomeFragment extends Fragment {
                         for(int i=1; i <= count; i++)
                         {
                             String levelName = doc.getString("level-" + String.valueOf(i));
+                        for (int i = 1; i <= count; i++) {
+                            String levelName = doc.getString("level-" + i);
                             // String catID = doc.getString("CAT" + String.valueOf(i) + "_ID");
 
                             levelsList.add(levelName);
                         }
-                        Intent intent = new Intent(getActivity(),levelCard.class);
+                        Intent intent = new Intent(getActivity(), levelCard.class);
                         startActivity(intent);
+
                         getActivity().finish();
                     }
                     else
@@ -150,17 +121,14 @@ public class HomeFragment extends Fragment {
                         getActivity().finish();
                     }
 
-                }
-                else
-                {
+                } else {
 
-                    Toast.makeText(getActivity(),task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
                 loading.cancel();
             }
         });
     }
-
 
 
 }

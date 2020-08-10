@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,7 +41,7 @@ public class SettingsFragment extends Fragment {
     private FirebaseAuth fAuth;
     private FirebaseFirestore fStore;
     private Button log_outbtn, editProfile, deleteAccount, about;
-    public static Switch soundEffects, vibrations, pushNotif;
+    public static SwitchCompat soundEffects, vibrations, pushNotif;
     private Dialog waiting;
 
     public static final String SHARED_PREFS = "sharedPrefs";

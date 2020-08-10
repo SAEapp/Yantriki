@@ -76,7 +76,7 @@ public class newSetActivity extends AppCompatActivity implements NsetsAdapter.On
 
         mFirestore = FirebaseFirestore.getInstance();
 
-        mFirestore.collection("Quizes").document("Level-" + String.valueOf(levelid))
+        mFirestore.collection("Quizes").document("Level-" + levelid)
                 .collection("sets").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -94,7 +94,7 @@ public class newSetActivity extends AppCompatActivity implements NsetsAdapter.On
             }
         });
 
-        mFirestore.collection("Quizes").document("Level-" + String.valueOf(levelid))
+        mFirestore.collection("Quizes").document("Level-" + levelid)
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {

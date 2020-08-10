@@ -46,7 +46,7 @@ public class LeaderboardFragment extends Fragment {
         loading.show();
 
 
-        LeaderBoard = (RecyclerView) view.findViewById(R.id.recyclerView);
+        LeaderBoard = view.findViewById(R.id.recyclerView);
         LeaderBoard.setAdapter(lBrecyclerAdapter);
         LeaderBoard.setHasFixedSize(true);
         LeaderBoard.setLayoutManager(new LinearLayoutManager(view.getContext()));

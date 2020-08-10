@@ -58,7 +58,7 @@ public class ScoreActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         fScore = bundle.getInt("Score");
         totalq = bundle.getInt("TotalQ");
-        new_score.setText("Score : " + String.valueOf(fScore) + "/" + String.valueOf(totalq));
+        new_score.setText("Score : " + fScore + "/" + totalq);
 
         loading = new Dialog(ScoreActivity.this);
         loading.setContentView(R.layout.loading_progressbar);
@@ -94,7 +94,7 @@ public class ScoreActivity extends AppCompatActivity {
         quizParams.put("first_try", true);
 
         final DocumentReference documentReference1 = db.collection("users").document(userID).collection("quize_scores")
-                .document(String.valueOf(levelid) + String.valueOf(setId));
+                .document(String.valueOf(levelid) + setId);
         documentReference1.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
@@ -113,10 +113,10 @@ public class ScoreActivity extends AppCompatActivity {
                     } else {
                         high_score = Integer.parseInt(documentSnapshot.getString("best_score"));
                     }
-                    bestScore.setText("Best : " + String.valueOf(high_score) + "/" + String.valueOf(totalq));
+                    bestScore.setText("Best : " + high_score + "/" + totalq);
                 } else {
                     db.collection("users").document(userID).collection("quize_scores")
-                            .document(String.valueOf(levelid) + String.valueOf(setId)).set(quizParams);
+                            .document(String.valueOf(levelid) + setId).set(quizParams);
                     Log.d("tag", "Created Document");
                     new Thread() {
                         public void run() {

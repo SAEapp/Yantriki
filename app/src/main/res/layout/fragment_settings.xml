@@ -13,7 +13,8 @@
         android:layout_height="45dp"
         android:background="@color/color4"
         android:gravity="center_vertical"
-        android:text="    APP SETTINGS"
+        android:layout_marginStart="15dp"
+        android:text="@string/app_settings"
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -29,19 +30,21 @@
             android:layout_gravity="center_vertical"
             android:background="@drawable/ic_sound" />
 
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/sounds_switch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:buttonTint="@color/colorPrimaryDark"
+            android:checked="true"
             android:gravity="center_vertical"
             android:switchMinWidth="40dp"
-            android:text="Sound Effects"
-            android:checked="true"
+            android:text="@string/sound_effects"
             android:textColor="#95000000"
-            android:textSize="20dp"
-            android:thumbTint="@color/color4" />
+            android:textSize="20sp"
+            android:thumbTint="@color/color4"
+            app:thumbTint="@color/colorPrimaryDark"
+            app:trackTint="@color/ic_launcher_background" />
     </LinearLayout>
 
     <View
@@ -61,19 +64,20 @@
             android:layout_gravity="center_vertical"
             android:background="@drawable/ic_vibration" />
 
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/vibration_switch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:buttonTint="@color/colorPrimaryDark"
             android:gravity="center_vertical"
             android:switchMinWidth="40dp"
-            android:text="Vibrations"
+            android:text="@string/vibrations"
             android:checked="true"
             android:textColor="#95000000"
-            android:textSize="20dp"
-            android:thumbTint="@color/color4" />
+            android:textSize="20sp"
+            app:thumbTint="@color/colorPrimaryDark"
+            app:trackTint="@color/ic_launcher_background" />
     </LinearLayout>
 
     <View
@@ -93,19 +97,20 @@
             android:layout_gravity="center_vertical"
             android:background="@drawable/ic_notif" />
 
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/push_notif_switch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:buttonTint="@color/colorPrimaryDark"
             android:gravity="center_vertical"
             android:switchMinWidth="40dp"
-            android:text="Push Notifications"
+            android:text="@string/push_notifications"
             android:checked="true"
             android:textColor="#95000000"
-            android:textSize="20dp"
-            android:thumbTint="@color/color4" />
+            android:textSize="20sp"
+            app:thumbTint="@color/colorPrimaryDark"
+            app:trackTint="@color/ic_launcher_background" />
     </LinearLayout>
 
     <LinearLayout
@@ -118,7 +123,8 @@
             android:layout_height="45dp"
             android:background="@color/color4"
             android:gravity="center_vertical"
-            android:text="    ACCOUNT"
+            android:text="@string/account"
+            android:layout_marginStart="15dp"
             android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -139,7 +145,7 @@
                 android:layout_height="40dp"
                 android:background="@color/colorPrimary"
                 android:textSize="20sp"
-                android:text="  Edit Profile"
+                android:text="@string/edit_profile"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
                 android:textColor="#95000000"
@@ -168,7 +174,7 @@
                 android:layout_height="40dp"
                 android:background="@color/colorPrimary"
                 android:textSize="20sp"
-                android:text="  Delete Account"
+                android:text="@string/delete_account"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
                 android:textColor="#95000000"
@@ -183,7 +189,8 @@
         android:layout_height="45dp"
         android:background="@color/color4"
         android:gravity="center_vertical"
-        android:text="    OTHERS"
+        android:text="@string/others"
+        android:layout_marginStart="15dp"
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -208,8 +215,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@color/colorPrimary"
-
-                android:text="  About"
+                android:text="@string/about"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
                 android:textColor="#95000000"
@@ -236,7 +242,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="#ffffff"
-                android:text="  Log Out"
+                android:text="@string/log_out"
                 android:textAllCaps="false"
                 android:textColor="#95000000"
                 android:textSize="20sp"
