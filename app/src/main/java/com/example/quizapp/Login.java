@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,10 +26,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Login extends AppCompatActivity {
-    EditText mEmail, mPassword;
-    Button mLoginBtn;
-    TextView mCreateBtn, forgotTextLink;
-    FirebaseAuth fAuth;
+    boolean doubleBackToExitPressedOnce = false;
+    private EditText mEmail, mPassword;
+    private Button mLoginBtn;
+    private TextView mCreateBtn, forgotTextLink;
+    private FirebaseAuth fAuth;
     private Dialog waiting;
 
     @Override
@@ -80,9 +82,11 @@ public class Login extends AppCompatActivity {
                         if (task.isSuccessful()) {
 
                             if (fAuth.getCurrentUser().isEmailVerified()) {
-
+                                Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
                                 Toast.makeText(Login.this, "Logged In Successfully.", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(), MainActivity2.class));
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                                finish();
 
                             } else {
 
@@ -146,5 +150,22 @@ public class Login extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show();
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
     }
 }

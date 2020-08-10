@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -35,11 +37,13 @@ public class ScoreActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseAuth fAuth;
     private FirebaseUser user;
+    private AdView mAdView;
     private int fScore;
     private int totalq;
     private int high_score;
     private Dialog loading;
     private String userID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +58,10 @@ public class ScoreActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         userID = fAuth.getCurrentUser().getUid();
         user = fAuth.getCurrentUser();
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         Bundle bundle = getIntent().getExtras();
         fScore = bundle.getInt("Score");

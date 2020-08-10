@@ -10,7 +10,8 @@
     <color name="colorPrimary">#ffffff</color>
     <color name="colorPrimaryDark">#241333</color>
     <color name="colorAccent">#d81b60</color>
-    <color name="colorLayerBack">#ce63e5</color>
+    <color name="colorBack2">#46009F</color>
+    <color name="colorLayerBack">#ba56ab</color>
     <color name="colorBack">#5F1CB3</color>
     <color name="colorTitle">#362742</color>
     <color name="colorSubTitle">#c5c9cf</color>

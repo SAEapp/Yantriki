@@ -12,7 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".MainActivity2"
             android:screenOrientation="portrait" />
@@ -43,13 +42,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Register"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Register"
+            android:screenOrientation="portrait" />
         <activity android:name=".levelCard" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-7455045588759877~8208384313"/>
+
     </application>
 
 </manifest>

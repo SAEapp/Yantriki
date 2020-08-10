@@ -28,7 +28,7 @@ public class MainActivity2 extends AppCompatActivity {
 
     public static boolean soundState;  //sound
     public static boolean vibrationState;   //vibration
-    public static boolean pushNotificationState;
+    public static boolean pushNotificationState; //push Notifications(doesn't work)
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     DrawerLayout drawer;
@@ -46,7 +46,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Dashboard");
+        getSupportActionBar().setTitle("AUTOQUIZ");
         navigationView = findViewById(R.id.nested);
 
 
@@ -72,28 +72,28 @@ public class MainActivity2 extends AppCompatActivity {
                 if (item.getItemId() == R.id.home) {
                     fragmentManager = getSupportFragmentManager();
                     fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragmentContainer, new HomeFragment());
+                    fragmentTransaction.replace(R.id.fragmentContainer, new HomeFragment(),"Home_Fragment");
                     fragmentTransaction.commit();
                     // loadFragment(new MainFragment());
                 }
                 if (item.getItemId() == R.id.account) {
                     fragmentManager = getSupportFragmentManager();
                     fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragmentContainer, new ProfileFragment());
+                    fragmentTransaction.replace(R.id.fragmentContainer, new ProfileFragment(),"Profile_Fragment");
                     fragmentTransaction.commit();
                     //loadFragment(new SecondFragment());
                 }
                 if (item.getItemId() == R.id.leaderboard) {
                     fragmentManager = getSupportFragmentManager();
                     fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragmentContainer, new LeaderboardFragment());
+                    fragmentTransaction.replace(R.id.fragmentContainer, new LeaderboardFragment(),"Leaderboard_Fragment");
                     fragmentTransaction.commit();
                     //loadFragment(new MainFragment());
                 }
                 if (item.getItemId() == R.id.settings) {
                     fragmentManager = getSupportFragmentManager();
                     fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragmentContainer, new SettingsFragment());
+                    fragmentTransaction.replace(R.id.fragmentContainer, new SettingsFragment(),"Settings_Fragment");
                     fragmentTransaction.commit();
                     //loadFragment(new MainFragment());
                 }
@@ -115,17 +115,17 @@ public class MainActivity2 extends AppCompatActivity {
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragmentContainer, new HomeFragment());
         fragmentTransaction.commit();
+        if(fragmentManager.findFragmentById(R.id.fragmentContainer) instanceof HomeFragment){
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show();
+            new Handler().postDelayed(new Runnable() {
 
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Press BACK again to exit", Toast.LENGTH_SHORT).show();
-
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce = false;
-            }
-        }, 2000);
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce = false;
+                }
+            }, 2000);
+        }
     }
 
     public void loadData() {

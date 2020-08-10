@@ -25,13 +25,15 @@
                 android:gravity="center"
                 android:background="@drawable/firstlayer">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageView"
-                    android:layout_marginTop="50px"
-                    android:layout_marginBottom="50px"
                     android:layout_width="300px"
                     android:layout_height="300px"
-                    android:src="@drawable/profile"/>
+                    android:src="@drawable/profile"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="#FFFFFF"
+                    android:layout_marginTop="50px"
+                    android:layout_marginBottom="50px" />
 
                 <EditText
                     android:id="@+id/name_editText"
@@ -54,7 +56,9 @@
             android:padding="50px"
             android:paddingTop="70px"
             android:gravity="center"
-            android:background="#46009F">
+            android:background="@drawable/secondlayer">
+
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -190,7 +194,7 @@
                 android:layout_marginTop="35dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/round_white"
-                android:text="Save"
+                android:text="@string/save"
                 android:textColor="@color/colorTitle"
                 android:textSize="14sp"
                 android:textStyle="bold"
