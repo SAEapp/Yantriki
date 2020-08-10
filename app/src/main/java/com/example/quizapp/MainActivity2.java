@@ -62,6 +62,7 @@ public class MainActivity2 extends AppCompatActivity {
         toggle.setDrawerIndicatorEnabled(true);
         toggle.syncState();
 
+        overridePendingTransition(android.R.anim.fade_in, R.anim.zoom);
         //add default fragment
 
         fragmentManager = getSupportFragmentManager();

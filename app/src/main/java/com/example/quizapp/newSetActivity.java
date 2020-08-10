@@ -50,6 +50,8 @@ public class newSetActivity extends AppCompatActivity implements NsetsAdapter.On
         levelName = bundle.getString("Level");
         levelid = bundle.getInt("Level_ID",1);
 
+        
+
         Toolbar toolbar = findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(levelName);

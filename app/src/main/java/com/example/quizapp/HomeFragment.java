@@ -1,12 +1,15 @@
 package com.example.quizapp;
 
+import android.animation.ObjectAnimator;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,6 +32,7 @@ public class HomeFragment extends Fragment {
     private FirebaseFirestore firestore;
     public static List<String> levelsList = new ArrayList<>();
     private Dialog loading;
+    private ImageView back;
 
     @Nullable
     @Override
@@ -46,6 +50,21 @@ public class HomeFragment extends Fragment {
 //                startActivity(new Intent(getActivity(), LeaderBoard.class));
 //            }
 //        });
+
+        back=view.findViewById(R.id.fragHomeBack);
+        back.setTranslationY(-100f);
+        ObjectAnimator animation = ObjectAnimator.ofFloat(back, "translationY", 0f);
+        animation.setDuration(1000);
+        animation.start();
+
+        AlphaAnimation alphaAnimation= new AlphaAnimation(0.5f,1f);
+        alphaAnimation.setDuration(1000);
+        alphaAnimation.setStartOffset(0);
+        alphaAnimation.setFillAfter(true);
+        back.setAnimation(alphaAnimation);
+        startbtn.setAnimation(alphaAnimation);
+
+
 
         loading = new Dialog(getActivity());
         loading.setContentView(R.layout.loading_progressbar);
@@ -121,14 +140,19 @@ public class HomeFragment extends Fragment {
 
                             levelsList.add(levelName);
                         }
+                        loading.cancel();
                         Intent intent = new Intent(getActivity(),levelCard.class);
+
                         startActivity(intent);
+
                         getActivity().finish();
+
                     }
                     else
                     {
                         Toast.makeText(getActivity(),"No Levels Document Exists!",Toast.LENGTH_SHORT).show();
                         getActivity().finish();
+                        loading.cancel();
                     }
 
                 }
@@ -136,8 +160,9 @@ public class HomeFragment extends Fragment {
                 {
 
                     Toast.makeText(getActivity(),task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                    loading.cancel();
                 }
-                loading.cancel();
+
             }
         });
     }

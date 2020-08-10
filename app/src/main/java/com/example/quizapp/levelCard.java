@@ -118,6 +118,7 @@ public class levelCard extends AppCompatActivity {
                             i.putExtra("Level", "Advanced");
                             i.putExtra("Level_ID", position+1);
                         }
+                        overridePendingTransition(R.anim.zoom, R.anim.zoom);
                         startActivity(i);
                     }
                 });
