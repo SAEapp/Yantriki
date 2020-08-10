@@ -101,9 +101,8 @@ public class HomeFragment extends Fragment {
                     {
                         long count = (long)doc.get("count");
 
-                        for(int i=1; i <= count; i++)
-                        {
-                            String levelName = doc.getString("level-" + String.valueOf(i));
+
+
                         for (int i = 1; i <= count; i++) {
                             String levelName = doc.getString("level-" + i);
                             // String catID = doc.getString("CAT" + String.valueOf(i) + "_ID");
@@ -113,13 +112,12 @@ public class HomeFragment extends Fragment {
                         Intent intent = new Intent(getActivity(), levelCard.class);
                         startActivity(intent);
 
-                        getActivity().finish();
                     }
                     else
                     {
                         Toast.makeText(getActivity(),"No Levels Document Exists!",Toast.LENGTH_SHORT).show();
-                        getActivity().finish();
                     }
+                    getActivity().finish();
 
                 } else {
 
