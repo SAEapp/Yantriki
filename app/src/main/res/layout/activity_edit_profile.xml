@@ -54,7 +54,9 @@
             android:padding="50px"
             android:paddingTop="70px"
             android:gravity="center"
-            android:background="#46009F">
+            android:background="@drawable/secondlayer">
+
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
