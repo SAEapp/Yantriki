@@ -16,13 +16,13 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        imageView=findViewById(R.id.appicon);
-        AlphaAnimation alphaAnimation= new AlphaAnimation(0f,1f);
+        imageView = findViewById(R.id.appicon);
+        AlphaAnimation alphaAnimation = new AlphaAnimation(0f, 1f);
         alphaAnimation.setDuration(2000);
         alphaAnimation.setStartOffset(0);
         alphaAnimation.setFillAfter(true);
         imageView.startAnimation(alphaAnimation);
-        Handler handler= new Handler();
+        Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {

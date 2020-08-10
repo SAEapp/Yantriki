@@ -18,10 +18,10 @@ public class cardAdapter extends PagerAdapter {
     private LayoutInflater layoutInflater;
     private Context context;
 
-    public cardAdapter(List<CardModel> cardModels, Context context){
+    public cardAdapter(List<CardModel> cardModels, Context context) {
 
-        this.cardModels= cardModels;
-        this.context= context;
+        this.cardModels = cardModels;
+        this.context = context;
 
     }
 
@@ -39,13 +39,13 @@ public class cardAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        layoutInflater= LayoutInflater.from(context);
-        View view= layoutInflater.inflate(R.layout.card ,container, false);
+        layoutInflater = LayoutInflater.from(context);
+        View view = layoutInflater.inflate(R.layout.card, container, false);
         ImageView imageView;
         TextView title, desc;
         imageView = view.findViewById(R.id.Image);
-        title= view.findViewById(R.id.Topic);
-        desc= view.findViewById(R.id.desc);
+        title = view.findViewById(R.id.Topic);
+        desc = view.findViewById(R.id.desc);
 
         imageView.setImageResource(cardModels.get(position).getImage());
         title.setText(cardModels.get(position).getTitle());
@@ -57,7 +57,7 @@ public class cardAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        container.removeView((View)object);
+        container.removeView((View) object);
         //super.destroyItem(container, position, object);
     }
 }

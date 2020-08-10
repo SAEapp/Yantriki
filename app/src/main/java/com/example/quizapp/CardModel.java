@@ -7,11 +7,11 @@ public class CardModel {
     private String title;
     private String desc;
 
-    public CardModel(int image, String title, String desc){
+    public CardModel(int image, String title, String desc) {
 
-        this.image= image;
-        this.title=title;
-        this.desc=desc;
+        this.image = image;
+        this.title = title;
+        this.desc = desc;
 
     }
 

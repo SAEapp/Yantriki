@@ -8,7 +8,8 @@ public class setslist {
         QuizName = quizName;
         QuizDisc = quizDisc;
     }
-    public setslist(){
+
+    public setslist() {
 
     }
 

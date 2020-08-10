@@ -12,7 +12,6 @@ import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +32,7 @@ import java.util.Map;
 
 public class Register extends AppCompatActivity {
     public static final String TAG = "TAG";
-    EditText mFullName,mEmail,mPassword,mPhone;
+    EditText mFullName, mEmail, mPassword, mPhone;
     Button mRegisterBtn;
     TextView mLoginBtn;
     FirebaseAuth fAuth;
@@ -47,25 +46,25 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        mFullName=findViewById(R.id.fullName);
-        mEmail=findViewById(R.id.email);
-        mPassword=findViewById(R.id.password);
-        mPhone=findViewById(R.id.phone);
-        mRegisterBtn=findViewById(R.id.registerBtn);
-        mLoginBtn=findViewById(R.id.createText);
-        fAuth= FirebaseAuth.getInstance();
+        mFullName = findViewById(R.id.fullName);
+        mEmail = findViewById(R.id.email);
+        mPassword = findViewById(R.id.password);
+        mPhone = findViewById(R.id.phone);
+        mRegisterBtn = findViewById(R.id.registerBtn);
+        mLoginBtn = findViewById(R.id.createText);
+        fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
-        imageView=findViewById(R.id.imageView);
+        imageView = findViewById(R.id.imageView);
 
         waiting = new Dialog(Register.this);
         waiting.setContentView(R.layout.waiting_progressbar);
         waiting.setCancelable(true);
         waiting.getWindow().setBackgroundDrawableResource(R.drawable.progress_background);
-        waiting.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        waiting.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         //Animation of the elements
 
-        AlphaAnimation alphaAnimation= new AlphaAnimation(0.5f,1f);
+        AlphaAnimation alphaAnimation = new AlphaAnimation(0.5f, 1f);
         alphaAnimation.setDuration(1500);
         alphaAnimation.setStartOffset(0);
         alphaAnimation.setFillAfter(true);
@@ -82,7 +81,7 @@ public class Register extends AppCompatActivity {
         animation.setDuration(2000);
         animation.start();
 
-        if (fAuth.getCurrentUser() != null && fAuth.getCurrentUser().isEmailVerified()){
+        if (fAuth.getCurrentUser() != null && fAuth.getCurrentUser().isEmailVerified()) {
             startActivity(new Intent(getApplicationContext(), MainActivity2.class));
             finish();
         }
@@ -92,60 +91,60 @@ public class Register extends AppCompatActivity {
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String email=mEmail.getText().toString().trim();
-                String password=mPassword.getText().toString().trim();
+                final String email = mEmail.getText().toString().trim();
+                String password = mPassword.getText().toString().trim();
                 final String fullName = mFullName.getText().toString();
-                final String phone    = mPhone.getText().toString();
+                final String phone = mPhone.getText().toString();
 
-                if (TextUtils.isEmpty(email)){
+                if (TextUtils.isEmpty(email)) {
                     mEmail.setError("Email is Required!");
                     return;
                 }
-                if (TextUtils.isEmpty(password)){
+                if (TextUtils.isEmpty(password)) {
                     mPassword.setError("Password is Required!");
                 }
-                if (password.length() < 6){
+                if (password.length() < 6) {
                     mPassword.setError("Password too short!");
                     return;
                 }
-                if(!phone.matches("[0-9]+")){
+                if (!phone.matches("[0-9]+")) {
                     mPhone.setError("Must be a number");
                     return;
                 } else {
-                    if(phone.length() <10 || phone.length()>11){
+                    if (phone.length() < 10 || phone.length() > 11) {
                         mPhone.setError("Invalid Number!");
                         return;
                     }
                 }
-                if(fullName.length()>13){
+                if (fullName.length() > 13) {
                     mFullName.setError("Must be less than 13 characters.");
                     return;
                 }
                 waiting.show();
                 //register the user in firebase
-                fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
+                        if (task.isSuccessful()) {
 
                             fAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()){
+                                    if (task.isSuccessful()) {
 
                                         Toast.makeText(Register.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
                                         userID = fAuth.getCurrentUser().getUid();
                                         DocumentReference documentReference = fStore.collection("users").document(userID);
-                                        Map<String,Object> user = new HashMap<>();
-                                        user.put("fName",fullName);
-                                        user.put("email",email);
-                                        user.put("phone",phone);
-                                        user.put("total_score","0");
-                                        user.put("full_score",0);
+                                        Map<String, Object> user = new HashMap<>();
+                                        user.put("fName", fullName);
+                                        user.put("email", email);
+                                        user.put("phone", phone);
+                                        user.put("total_score", "0");
+                                        user.put("full_score", 0);
                                         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
-                                                Log.d(TAG, "onSuccess: user Profile is created for "+ userID);
+                                                Log.d(TAG, "onSuccess: user Profile is created for " + userID);
                                             }
                                         }).addOnFailureListener(new OnFailureListener() {
                                             @Override
@@ -160,7 +159,7 @@ public class Register extends AppCompatActivity {
                                 }
                             });
 
-                        }else{
+                        } else {
                             Toast.makeText(Register.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             waiting.cancel();
                         }
