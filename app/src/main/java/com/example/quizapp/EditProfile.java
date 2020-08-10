@@ -32,12 +32,15 @@ import com.squareup.picasso.Picasso;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class EditProfile extends AppCompatActivity {
 
     public static final String TAG = "TAG";
     EditText profileFullName,profilePhone;
     TextView profileEmail;
-    ImageView profileImageView;
+    //ImageView profileImageView;
+    CircleImageView profileImageView;
     Button saveBtn;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;

@@ -25,13 +25,16 @@
                 android:gravity="center"
                 android:background="@drawable/firstlayer">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/imageView"
-                    android:layout_marginTop="50px"
-                    android:layout_marginBottom="50px"
                     android:layout_width="300px"
                     android:layout_height="300px"
-                    android:src="@drawable/profile"/>
+                    android:src="@drawable/profile"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="#FFFFFF"
+                    android:layout_marginTop="50px"
+                    android:layout_marginBottom="50px" />
 
                 <EditText
                     android:id="@+id/name_editText"
