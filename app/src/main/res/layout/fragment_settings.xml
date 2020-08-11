@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
@@ -49,9 +48,9 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:layout_marginLeft="40dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="#7E7685"
         android:visibility="visible"/>
 
     <LinearLayout
@@ -83,9 +82,9 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:layout_marginLeft="40dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="#7E7685"
         android:visibility="visible"/>
 
     <LinearLayout
@@ -114,11 +113,12 @@
             app:thumbTint="@color/colorPrimaryDark"
             app:trackTint="@color/ic_launcher_background" />
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:layout_marginLeft="40dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="#7E7685"
         android:visibility="visible"/>
 
     <LinearLayout
@@ -161,9 +161,9 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="2dp"
             android:layout_marginLeft="35dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="#7E7685"
             android:visibility="visible"/>
 
         <LinearLayout
@@ -191,9 +191,9 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="2dp"
             android:layout_marginLeft="35dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="#7E7685"
             android:visibility="visible"/>
 
     </LinearLayout>
@@ -239,9 +239,9 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="2dp"
             android:layout_marginLeft="35dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="#7E7685"
             android:visibility="visible"/>
 
         <LinearLayout
@@ -268,9 +268,9 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="2dp"
             android:layout_marginLeft="35dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="#7E7685"
             android:visibility="visible"/>
 
     </LinearLayout>
