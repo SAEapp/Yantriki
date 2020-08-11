@@ -174,7 +174,6 @@ public class QuestionsActivity extends AppCompatActivity implements QARecyclerAd
         optionsList.add(questionsList.get(qnum).getOptionB());
         optionsList.add(questionsList.get(qnum).getOptionC());
         optionsList.add(questionsList.get(qnum).getOptionD());
-        optionsList.add(String.valueOf(questionsList.get(qnum).getAnswer()));
 
         qnumdis.setText(qnum + "/" + questionsList.size());
         startCounter();
