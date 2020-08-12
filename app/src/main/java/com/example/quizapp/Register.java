@@ -128,10 +128,7 @@ public class Register extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                            fAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
+
 
                                         Toast.makeText(Register.this, "User Created.", Toast.LENGTH_SHORT).show();
                                         userID = fAuth.getCurrentUser().getUid();
@@ -155,12 +152,9 @@ public class Register extends AppCompatActivity {
                                         });
                                         //leaderboard(userID,fullName);
 
-                                        startActivity(new Intent(getApplicationContext(), Login.class));
+                                        startActivity(new Intent(getApplicationContext(), MainActivity2.class));
                                         overridePendingTransition(android.R.anim.fade_in, R.anim.zoom);
                                         finish();
-                                    }
-                                }
-                            });
 
                         } else {
                             Toast.makeText(Register.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
