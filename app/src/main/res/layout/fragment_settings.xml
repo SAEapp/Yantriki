@@ -13,7 +13,7 @@
         android:layout_height="45dp"
         android:background="@color/color4"
         android:gravity="center_vertical"
-        android:layout_marginStart="15dp"
+        android:paddingLeft="15dp"
         android:text="@string/app_settings"
         android:textColor="#000000"
         android:textSize="20sp"
@@ -25,9 +25,11 @@
         android:layout_height="40dp">
 
         <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="0dp"
             android:background="@drawable/ic_sound" />
 
         <androidx.appcompat.widget.SwitchCompat
@@ -43,8 +45,8 @@
             android:textColor="#95000000"
             android:textSize="20sp"
             android:thumbTint="@color/ic_launcher_background"
-            app:thumbTint="@color/colorPrimaryDark"
-            app:trackTint="@color/ic_launcher_background" />
+            app:thumbTint="@color/colorBack2"
+            app:trackTint="@color/colorSubTitle" />
     </LinearLayout>
 
     <View
@@ -60,9 +62,11 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="0dp"
             android:background="@drawable/ic_vibration" />
 
         <androidx.appcompat.widget.SwitchCompat
@@ -71,14 +75,14 @@
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:buttonTint="@color/colorPrimaryDark"
+            android:checked="true"
             android:gravity="center_vertical"
             android:switchMinWidth="40dp"
             android:text="@string/vibrations"
-            android:checked="true"
             android:textColor="#95000000"
             android:textSize="20sp"
-            app:thumbTint="@color/colorPrimaryDark"
-            app:trackTint="@color/ic_launcher_background" />
+            app:thumbTint="@color/colorBack2"
+            app:trackTint="@color/colorSubTitle" />
     </LinearLayout>
 
     <View
@@ -94,9 +98,11 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="0dp"
             android:background="@drawable/ic_notif" />
 
         <androidx.appcompat.widget.SwitchCompat
@@ -105,14 +111,14 @@
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:buttonTint="@color/colorPrimaryDark"
+            android:checked="true"
             android:gravity="center_vertical"
             android:switchMinWidth="40dp"
             android:text="@string/push_notifications"
-            android:checked="true"
             android:textColor="#95000000"
             android:textSize="20sp"
-            app:thumbTint="@color/colorPrimaryDark"
-            app:trackTint="@color/ic_launcher_background" />
+            app:thumbTint="@color/colorBack2"
+            app:trackTint="@color/colorSubTitle" />
     </LinearLayout>
     <View
         android:layout_width="match_parent"
@@ -129,10 +135,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:layout_marginStart="0dp"
             android:background="@color/color4"
             android:gravity="center_vertical"
+            android:paddingStart="15sp"
             android:text="@string/account"
-            android:layout_marginStart="15dp"
             android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -142,10 +149,12 @@
             android:layout_height="40dp">
 
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:background="@drawable/ic_edit"
-                android:layout_gravity="center_vertical"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/ic_edit" />
 
             <Button
                 android:id="@+id/edit_profile"
@@ -171,10 +180,12 @@
             android:layout_height="40dp">
 
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:background="@drawable/ic_delete"
-                android:layout_gravity="center_vertical"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/ic_delete" />
 
             <Button
                 android:id="@+id/delete_account"
@@ -202,10 +213,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="45dp"
+        android:layout_marginStart="0dp"
         android:background="@color/color4"
         android:gravity="center_vertical"
+        android:paddingStart="15sp"
         android:text="@string/others"
-        android:layout_marginStart="15dp"
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -220,9 +232,11 @@
             android:layout_height="40dp">
 
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
                 android:background="@drawable/ic_about" />
 
             <Button
@@ -247,11 +261,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp">
+
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:background="@drawable/ic_logout"
-                android:layout_gravity="center_vertical"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/ic_logout" />
 
             <Button
                 android:id="@+id/logoutButton1"
