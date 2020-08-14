@@ -36,7 +36,7 @@ import com.squareup.picasso.Picasso;
 public class ProfileFragment extends Fragment {
 
     private static final int GALLERY_INTENT_CODE = 1023;
-    TextView fullName, email, phone, totalScore;
+    TextView fullName, email, totalScore;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     String userId;
@@ -53,7 +53,7 @@ public class ProfileFragment extends Fragment {
 
         //setContentView(R.layout.activity_profile);
 
-        phone = view.findViewById(R.id.phone_textView11);
+        //phone = view.findViewById(R.id.phone_textView11);
         fullName = view.findViewById(R.id.name_textView11);
         email = view.findViewById(R.id.email_textView11);
         totalScore = view.findViewById(R.id.totalScore);
@@ -96,7 +96,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
                 if (documentSnapshot.exists()) {
-                    phone.setText(documentSnapshot.getString("phone"));
+                    //phone.setText(documentSnapshot.getString("phone"));
                     fullName.setText(documentSnapshot.getString("fName"));
                     email.setText(documentSnapshot.getString("email"));
                     totalScore.setText(String.valueOf(documentSnapshot.get("full_score")));
@@ -165,7 +165,7 @@ public class ProfileFragment extends Fragment {
                 Intent i = new Intent(v.getContext(), EditProfile.class);
                 i.putExtra("fullName", fullName.getText().toString());
                 i.putExtra("email", email.getText().toString());
-                i.putExtra("phone", phone.getText().toString());
+                //i.putExtra("phone", phone.getText().toString());
                 startActivity(i);
 
             }

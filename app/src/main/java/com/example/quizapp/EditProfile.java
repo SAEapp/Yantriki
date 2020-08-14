@@ -37,8 +37,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class EditProfile extends AppCompatActivity {
 
     public static final String TAG = "TAG";
-    EditText profileFullName,profilePhone;
-    TextView profileEmail;
+    EditText profileFullName,profileEmail;
+    //EditText profilePhone;
     //ImageView profileImageView;
     CircleImageView profileImageView;
     Button saveBtn;
@@ -65,7 +65,7 @@ public class EditProfile extends AppCompatActivity {
 
         profileFullName = findViewById(R.id.name_editText);
         profileEmail = findViewById(R.id.email_text);
-        profilePhone = findViewById(R.id.phone_text);
+        //profilePhone = findViewById(R.id.phone_text);
         profileImageView = findViewById(R.id.imageView);
         saveBtn = findViewById(R.id.saveButton);
 
@@ -96,7 +96,7 @@ public class EditProfile extends AppCompatActivity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(profileFullName.getText().toString().isEmpty() || profileEmail.getText().toString().isEmpty() || profilePhone.getText().toString().isEmpty()){
+                if(profileFullName.getText().toString().isEmpty() || profileEmail.getText().toString().isEmpty()){
                     Toast.makeText(EditProfile.this, "One or Many fields are empty.", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -109,7 +109,7 @@ public class EditProfile extends AppCompatActivity {
                         Map<String,Object> edited = new HashMap<>();
                         edited.put("email",email);
                         edited.put("fName",profileFullName.getText().toString());
-                        edited.put("phone",profilePhone.getText().toString());
+                        //edited.put("phone",profilePhone.getText().toString());
                         docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
@@ -131,7 +131,7 @@ public class EditProfile extends AppCompatActivity {
 
         profileEmail.setText(email);
         profileFullName.setText(fullName);
-        profilePhone.setText(phone);
+        //profilePhone.setText(phone);
 
         Log.d(TAG, "onCreate: " + fullName + " " + email + " " + phone);
         waiting.cancel();
