@@ -128,7 +128,7 @@
                 android:layout_marginBottom="16dp"
                 android:alpha="0.6"
                 android:text="@string/developers"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/bodyDevelopers"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -153,7 +153,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/anant"
-                    android:textSize="12sp" />
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textView8"
@@ -161,7 +162,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/anushree"
-                    android:textSize="12sp" />
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textView11"
@@ -169,7 +171,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/kushagra"
-                    android:textSize="12sp" />
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textView9"
@@ -177,7 +180,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/simran"
-                    android:textSize="12sp" />
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textView10"
@@ -185,7 +189,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/vibhanshu"
-                    android:textSize="12sp" />
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <TextView

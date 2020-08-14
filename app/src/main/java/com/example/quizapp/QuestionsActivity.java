@@ -157,7 +157,7 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
         opt3.setText(questionsList.get(qnum).getOptionC());
         opt4.setText(questionsList.get(qnum).getOptionD());
 
-        qnumdis.setText(qnum + "/" + questionsList.size());
+        qnumdis.setText(1 + "/" + questionsList.size());
         startCounter();
         qnum = 0;
     }
