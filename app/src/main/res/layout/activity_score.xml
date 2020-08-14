@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@mipmap/loginnew" />
+        app:srcCompat="@drawable/ic_curve_gradient_01" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
