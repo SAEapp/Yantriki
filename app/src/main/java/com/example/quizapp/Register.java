@@ -33,7 +33,7 @@ import java.util.Map;
 
 public class Register extends AppCompatActivity {
     public static final String TAG = "TAG";
-    private EditText mFullName, mEmail, mPassword, mPhone;
+    private EditText mFullName, mEmail, mPassword;
     private Button mRegisterBtn;
     private TextView mLoginBtn;
     private FirebaseAuth fAuth;
@@ -50,7 +50,7 @@ public class Register extends AppCompatActivity {
         mFullName = findViewById(R.id.fullName);
         mEmail = findViewById(R.id.email);
         mPassword = findViewById(R.id.password);
-        mPhone = findViewById(R.id.phone);
+        //mPhone = findViewById(R.id.phone);
         mRegisterBtn = findViewById(R.id.registerBtn);
         mLoginBtn = findViewById(R.id.createText);
         fAuth = FirebaseAuth.getInstance();
@@ -73,7 +73,7 @@ public class Register extends AppCompatActivity {
         mFullName.startAnimation(alphaAnimation);
         mEmail.startAnimation(alphaAnimation);
         mPassword.startAnimation(alphaAnimation);
-        mPhone.startAnimation(alphaAnimation);
+        //mPhone.startAnimation(alphaAnimation);
         mRegisterBtn.startAnimation(alphaAnimation);
         mLoginBtn.startAnimation(alphaAnimation);
 
@@ -95,7 +95,7 @@ public class Register extends AppCompatActivity {
                 final String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
                 final String fullName = mFullName.getText().toString();
-                final String phone = mPhone.getText().toString();
+                //final String phone = mPhone.getText().toString();
 
                 if (TextUtils.isEmpty(email)) {
                     mEmail.setError("Email is Required!");
@@ -108,15 +108,15 @@ public class Register extends AppCompatActivity {
                     mPassword.setError("Password too short!");
                     return;
                 }
-                if (!phone.matches("[0-9]+")) {
-                    mPhone.setError("Must be a number");
-                    return;
-                } else {
-                    if (phone.length() < 10 || phone.length() > 11) {
-                        mPhone.setError("Invalid Number!");
-                        return;
-                    }
-                }
+//                if (!phone.matches("[0-9]+")) {
+//                    mPhone.setError("Must be a number");
+//                    return;
+//                } else {
+//                    if (phone.length() < 10 || phone.length() > 11) {
+//                        mPhone.setError("Invalid Number!");
+//                        return;
+//                    }
+//                }
                 if (fullName.length() > 13) {
                     mFullName.setError("Must be less than 13 characters.");
                     return;
@@ -136,7 +136,7 @@ public class Register extends AppCompatActivity {
                                         Map<String, Object> user = new HashMap<>();
                                         user.put("fName", fullName);
                                         user.put("email", email);
-                                        user.put("phone", phone);
+                                        //user.put("phone", phone);
                                         user.put("total_score", "0");
                                         user.put("full_score", 0);
                                         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
