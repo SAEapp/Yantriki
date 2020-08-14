@@ -32,6 +32,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Advanced"
+            android:background="#000000"
+            android:textSize="20dp"
             android:textStyle="bold"
             android:textColor="@color/color4"
             android:gravity="center"/>
@@ -46,6 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Intermediate"
+            android:textSize="20dp"
+            android:background="#000000"
             android:textStyle="bold"
             android:textColor="@color/color4"
             android:gravity="center"/>
@@ -61,6 +65,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Beginner"
+            android:textSize="20dp"
+            android:background="#000000"
             android:textStyle="bold"
             android:textColor="@color/color4"
             android:gravity="center"/>
