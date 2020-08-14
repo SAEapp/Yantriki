@@ -10,11 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class LBrecyclerAdapter extends RecyclerView.Adapter<LBrecyclerAdapter.ViewHolder> {
+public class LBrecyclerAdapter2 extends RecyclerView.Adapter<LBrecyclerAdapter2.ViewHolder> {
 
-    public List<LBUsers> lbUsersList;
+    public List<LBUsers2> lbUsersList;
 
-    public LBrecyclerAdapter(List<LBUsers> lbUsersList) {
+    public LBrecyclerAdapter2(List<LBUsers2> lbUsersList) {
         this.lbUsersList = lbUsersList;
     }
 
@@ -32,7 +32,7 @@ public class LBrecyclerAdapter extends RecyclerView.Adapter<LBrecyclerAdapter.Vi
         String Name = lbUsersList.get(position).getfName();
         holder.setname(Name);
 
-        String Score = String.valueOf(lbUsersList.get(position).getLevel1score());
+        String Score = String.valueOf(lbUsersList.get(position).getLevel2score());
 
         holder.setscore(Score);
 

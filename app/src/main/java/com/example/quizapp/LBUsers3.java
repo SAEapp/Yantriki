@@ -1,9 +1,22 @@
 package com.example.quizapp;
 
-public class LBUsers {
+public class LBUsers3 {
 
     String fName, phone, email;
-    int level1score;
+    int level3score;
+
+    public LBUsers3(String fName, int level3score) {
+        this.fName = fName;
+        this.level3score = level3score;
+    }
+
+    public int getLevel3score() {
+        return level3score;
+    }
+
+    public void setLevel3score(int level3score) {
+        this.level3score = level3score;
+    }
 
     public String getfName() {
         return fName;
@@ -29,20 +42,9 @@ public class LBUsers {
         this.email = email;
     }
 
-    public LBUsers(String fName, int level1score) {
-        this.fName = fName;
-        this.level1score = level1score;
-    }
 
-    public int getLevel1score() {
-        return level1score;
-    }
 
-    public void setLevel1score(int level1score) {
-        this.level1score = level1score;
-    }
-
-    public LBUsers() {
+    public LBUsers3() {
     }
 
 }

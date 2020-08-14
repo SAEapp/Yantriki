@@ -12,7 +12,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardlist"
         android:layout_width="match_parent"
-        android:layout_height="87dp"
+        android:layout_height="50dp"
         app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="20dp">
 
