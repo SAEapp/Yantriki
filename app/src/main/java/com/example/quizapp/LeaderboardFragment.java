@@ -1,11 +1,17 @@
 package com.example.quizapp;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,18 +39,35 @@ public class LeaderboardFragment extends Fragment {
     private LBrecyclerAdapter lBrecyclerAdapter1;
     private LBrecyclerAdapter2 lBrecyclerAdapter2;
     private LBrecyclerAdapter3 lBrecyclerAdapter3;
+    private Button beginner, Intermediate, Advanced;
     private Dialog loading;
+    private AlphaAnimation alphaAnimation, outanim;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_leaderboard, container, false);
+        final View view = inflater.inflate(R.layout.fragment_leaderboard, container, false);
         lbUsersList1 = new ArrayList<>();
         lbUsersList2 = new ArrayList<>();
         lbUsersList3 = new ArrayList<>();
         lBrecyclerAdapter1 = new LBrecyclerAdapter(lbUsersList1);
         lBrecyclerAdapter2 = new LBrecyclerAdapter2(lbUsersList2);
         lBrecyclerAdapter3 = new LBrecyclerAdapter3(lbUsersList3);
+
+        beginner=view.findViewById(R.id.Begibtn);
+        Intermediate=view.findViewById(R.id.Intebtn);
+        Advanced=view.findViewById(R.id.Advabtn);
+
+        alphaAnimation = new AlphaAnimation(0f, 1f);
+        alphaAnimation.setDuration(1000);
+        alphaAnimation.setStartOffset(0);
+        alphaAnimation.setFillAfter(false);
+
+        outanim= new AlphaAnimation(1f, 0f);
+        outanim.setDuration(1000);
+        outanim.setFillAfter(false);
+        outanim.setStartOffset(0);
+
 
         loading = new Dialog(getActivity());
         loading.setContentView(R.layout.loading_progressbar);
@@ -135,6 +158,141 @@ public class LeaderboardFragment extends Fragment {
                 loading.cancel();
             }
         });
+
+
+        beginner.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onClick(View v) {
+                if(LeaderBoard1.getVisibility()==View.VISIBLE){
+
+                }
+                else {
+                    beginner.setBackground(getResources().getDrawable(R.drawable.button));
+                    beginner.setTextColor(Color.parseColor("#FFFFFF"));
+
+                    Intermediate.setBackground(getResources().getDrawable(R.drawable.whitecolor));
+                    Intermediate.setTextColor(R.color.Black);
+
+                    Advanced.setBackground(getResources().getDrawable(R.drawable.whitecolor));
+                    Advanced.setTextColor(R.color.Black);
+
+
+                    if(LeaderBoard2.getVisibility()==View.VISIBLE){
+                        LeaderBoard2.setAnimation(outanim);
+                        outanim.start();
+                        LeaderBoard2.setVisibility(View.INVISIBLE);
+                    }
+                    if(LeaderBoard3.getVisibility()==View.VISIBLE){
+                        LeaderBoard3.setAnimation(outanim);
+                        outanim.start();
+                        LeaderBoard3.setVisibility(View.INVISIBLE);
+                    }
+                    Handler handler= new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            LeaderBoard1.setAnimation(alphaAnimation);
+                            alphaAnimation.start();
+                            LeaderBoard1.setVisibility(View.VISIBLE);
+
+                        }
+                    },1000);
+
+                }
+            }
+        });
+
+        Intermediate.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onClick(View v) {
+
+                if(LeaderBoard2.getVisibility()==View.VISIBLE){
+
+                }
+                else {
+                    Intermediate.setBackground(getResources().getDrawable(R.drawable.button));
+                    Intermediate.setTextColor(Color.parseColor("#FFFFFF"));
+
+                    beginner.setBackground(getResources().getDrawable(R.drawable.whitecolor));
+                    beginner.setTextColor(R.color.Black);
+
+                    Advanced.setBackground(getResources().getDrawable(R.drawable.whitecolor));
+                    Advanced.setTextColor(R.color.Black);
+
+
+                    if(LeaderBoard1.getVisibility()==View.VISIBLE){
+                        LeaderBoard1.setAnimation(outanim);
+                        outanim.start();
+                        LeaderBoard1.setVisibility(View.INVISIBLE);
+                    }
+                    if(LeaderBoard3.getVisibility()==View.VISIBLE){
+                        LeaderBoard3.setAnimation(outanim);
+                        outanim.start();
+                        LeaderBoard3.setVisibility(View.INVISIBLE);
+                    }
+                    Handler handler= new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            LeaderBoard2.setAnimation(alphaAnimation);
+                            alphaAnimation.start();
+                            LeaderBoard2.setVisibility(View.VISIBLE);
+
+                        }
+                    },1000);
+
+                }
+            }
+        });
+
+        Advanced.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onClick(View v) {
+                if(LeaderBoard3.getVisibility()==View.VISIBLE){
+
+                }
+                else {
+                    Advanced.setBackground(getResources().getDrawable(R.drawable.button));
+                    Advanced.setTextColor(Color.parseColor("#FFFFFF"));
+
+                    beginner.setBackground(getResources().getDrawable(R.drawable.whitecolor));
+                    beginner.setTextColor(R.color.Black);
+
+                    Intermediate.setBackground(getResources().getDrawable(R.drawable.whitecolor));
+                    Intermediate.setTextColor(R.color.Black);
+
+
+                    if(LeaderBoard1.getVisibility()==View.VISIBLE){
+                        LeaderBoard1.setAnimation(outanim);
+                        outanim.start();
+                        LeaderBoard1.setVisibility(View.INVISIBLE);
+                    }
+                    if(LeaderBoard2.getVisibility()==View.VISIBLE){
+                        LeaderBoard2.setAnimation(outanim);
+                        outanim.start();
+                        LeaderBoard2.setVisibility(View.INVISIBLE);
+                    }
+                    Handler handler= new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            LeaderBoard3.setAnimation(alphaAnimation);
+                            alphaAnimation.start();
+                            LeaderBoard3.setVisibility(View.VISIBLE);
+
+
+                        }
+                    },1000);
+
+                }
+            }
+        });
+
+
+
         return view;
     }
 
