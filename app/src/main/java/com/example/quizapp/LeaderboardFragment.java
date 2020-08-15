@@ -25,7 +25,6 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +46,7 @@ public class LeaderboardFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_leaderboard, container, false);
+        ((MainActivity2) getActivity()).getSupportActionBar().setTitle("Leaderboard");
         lbUsersList1 = new ArrayList<>();
         lbUsersList2 = new ArrayList<>();
         lbUsersList3 = new ArrayList<>();
