@@ -82,7 +82,7 @@ public class Register extends AppCompatActivity {
         animation.setDuration(2000);
         animation.start();
 
-        if (fAuth.getCurrentUser() != null && fAuth.getCurrentUser().isEmailVerified()) {
+        if (fAuth.getCurrentUser() != null ) {
             startActivity(new Intent(getApplicationContext(), MainActivity2.class));
             finish();
         }
