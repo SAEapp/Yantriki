@@ -319,9 +319,6 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (soundState) {
-                    soundPool.play(done, 1, 1, 0, 0, 1);
-                }
                 changeQuestion();
             }
         }, 2000);
