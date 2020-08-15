@@ -210,6 +210,7 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
             Intent intent = new Intent(QuestionsActivity.this, ScoreActivity.class);
             intent.putExtra("Score", score);
             intent.putExtra("TotalQ", questionsList.size());
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             finish();
         }
@@ -318,9 +319,6 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (soundState) {
-                    soundPool.play(done, 1, 1, 0, 0, 1);
-                }
                 changeQuestion();
             }
         }, 2000);
