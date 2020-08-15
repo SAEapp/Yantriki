@@ -133,8 +133,9 @@ public class ScoreActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                                     int val = Integer.parseInt(String.valueOf(documentSnapshot.get("level"+levelid + "score")));
-                                    db.collection("users").document(userID).update("total_score", String.valueOf(val + fScore));
-                                    db.collection("users").document(userID).update("full_score", val + fScore);
+                                    int val2 = Integer.parseInt(String.valueOf(documentSnapshot.get("total_score")));
+                                    db.collection("users").document(userID).update("total_score", String.valueOf(val2 + fScore));
+                                    db.collection("users").document(userID).update("full_score", val2 + fScore);
                                     db.collection("users").document(userID).update("level"+levelid + "score", val + fScore);
                                     Toast.makeText(ScoreActivity.this, "SCORE UPDATED!", Toast.LENGTH_SHORT).show();
 
