@@ -45,6 +45,7 @@ public class ProfileFragment extends Fragment {
     ImageView profileImage;
     StorageReference storageReference;
     private Dialog waiting;
+    TextView bScore,iScore,aScore;
 
     @Nullable
     @Override
@@ -57,6 +58,10 @@ public class ProfileFragment extends Fragment {
         fullName = view.findViewById(R.id.name_textView11);
         email = view.findViewById(R.id.email_textView11);
         totalScore = view.findViewById(R.id.totalScore);
+
+        bScore=view.findViewById(R.id.bscore);
+        iScore=view.findViewById(R.id.iscore);
+        aScore=view.findViewById(R.id.ascore);
 
         profileImage = view.findViewById(R.id.imageView11);
         changeProfile = view.findViewById(R.id.editButton1);
@@ -100,6 +105,9 @@ public class ProfileFragment extends Fragment {
                     fullName.setText(documentSnapshot.getString("fName"));
                     email.setText(documentSnapshot.getString("email"));
                     totalScore.setText(String.valueOf(documentSnapshot.get("full_score")));
+                    bScore.setText(String.valueOf(documentSnapshot.get("level1score")));
+                    iScore.setText(String.valueOf(documentSnapshot.get("level2score")));
+                    aScore.setText(String.valueOf(documentSnapshot.get("level3score")));
 
                 } else {
                     Log.d("tag", "onEvent: Document do not exists");
