@@ -59,12 +59,12 @@ public class LeaderboardFragment extends Fragment {
         Advanced=view.findViewById(R.id.Advabtn);
 
         alphaAnimation = new AlphaAnimation(0f, 1f);
-        alphaAnimation.setDuration(1000);
+        alphaAnimation.setDuration(500);
         alphaAnimation.setStartOffset(0);
         alphaAnimation.setFillAfter(false);
 
         outanim= new AlphaAnimation(1f, 0f);
-        outanim.setDuration(1000);
+        outanim.setDuration(500);
         outanim.setFillAfter(false);
         outanim.setStartOffset(0);
 
@@ -197,7 +197,7 @@ public class LeaderboardFragment extends Fragment {
                             LeaderBoard1.setVisibility(View.VISIBLE);
 
                         }
-                    },1000);
+                    },500);
 
                 }
             }
@@ -241,7 +241,7 @@ public class LeaderboardFragment extends Fragment {
                             LeaderBoard2.setVisibility(View.VISIBLE);
 
                         }
-                    },1000);
+                    },500);
 
                 }
             }
@@ -285,7 +285,7 @@ public class LeaderboardFragment extends Fragment {
 
 
                         }
-                    },1000);
+                    },500);
 
                 }
             }
