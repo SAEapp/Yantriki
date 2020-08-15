@@ -210,6 +210,7 @@ public class QuestionsActivity extends AppCompatActivity implements View.OnClick
             Intent intent = new Intent(QuestionsActivity.this, ScoreActivity.class);
             intent.putExtra("Score", score);
             intent.putExtra("TotalQ", questionsList.size());
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             finish();
         }

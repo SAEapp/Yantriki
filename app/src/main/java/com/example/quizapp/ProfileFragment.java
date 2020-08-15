@@ -51,7 +51,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        //setContentView(R.layout.activity_profile);
+        ((MainActivity2) getActivity()).getSupportActionBar().setTitle("Account");
 
         //phone = view.findViewById(R.id.phone_textView11);
         fullName = view.findViewById(R.id.name_textView11);
