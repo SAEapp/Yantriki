@@ -4,57 +4,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:backgroundTint="#FFFFFF"
     tools:context=".SplashScreen">
 
     <ImageView
         android:id="@+id/appicon"
-        android:layout_width="80dp"
-        android:layout_height="83dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/appicon" />
+        app:layout_constraintVertical_bias="0.65"
+        app:srcCompat="@drawable/ic_autoquiz_long_logo" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
-        android:alpha="0.8"
+        android:alpha="0"
         android:text="@string/autoquiz"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="30sp"
+        android:textSize="10sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appicon"
+        app:layout_constraintVertical_bias="0.110000014" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="144dp"
+        app:layout_constraintBottom_toTopOf="@+id/appicon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appicon"
-        app:layout_constraintVertical_bias="0.9"
-        app:srcCompat="@drawable/saelogo" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/saelogo2" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:alpha="0.8"
         android:text="presents"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        android:textSize="22dp"
+        app:layout_constraintBottom_toTopOf="@+id/appicon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.9" />
+        app:layout_constraintVertical_bias="0.13999999" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
