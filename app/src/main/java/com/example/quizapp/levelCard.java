@@ -73,7 +73,7 @@ public class levelCard extends AppCompatActivity {
 
         viewPager = findViewById(R.id.viewPager);
         viewPager.setAdapter((PagerAdapter) cardAdapter);
-        viewPager.setPadding(130, 500, 130, 0);
+        viewPager.setPadding(130, 0, 130, 0);
 
         Integer[] colors_temp = {getResources().getColor(R.color.color1),
                 getResources().getColor(R.color.color2),
