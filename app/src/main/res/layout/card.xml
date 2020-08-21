@@ -26,15 +26,16 @@
 
             <ImageView
                 android:id="@+id/Image"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="200dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="4dp"
                 android:scaleType="fitCenter"
                 android:src="@mipmap/beginner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/beginner"
-                tools:layout_editor_absoluteX="0dp" />
+                app:srcCompat="@mipmap/beginner" />
 
             <TextView
                 android:id="@+id/Topic"
