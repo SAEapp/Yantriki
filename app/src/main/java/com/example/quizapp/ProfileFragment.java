@@ -134,7 +134,7 @@ public class ProfileFragment extends Fragment {
                         String newPassword = resetPassword.getText().toString();
                         // extract the email and send reset link
                         if (newPassword.length() <= 6) {
-                            Toast.makeText(getContext(), "Password must be more than 6 characters", Toast.LENGTH_SHORT);
+                            Toast.makeText(getContext(), "Password must be more than 6 characters", Toast.LENGTH_SHORT).show();
                         } else {
                             waiting.show();
                             user.updatePassword(newPassword).addOnSuccessListener(new OnSuccessListener<Void>() {
