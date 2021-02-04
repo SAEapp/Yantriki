@@ -3,7 +3,8 @@
 This is an Automobile Quiz App made under SAE MNNIT.Automobile enthusiasts can test their knowledge of the Automoile World.
 
 ## App Screenshots
-<img src="https://user-images.githubusercontent.com/59929888/106939488-57013280-6746-11eb-9a1b-56feb94a90b5.jpg" width="250" heigth="500">            <img src="https://user-images.githubusercontent.com/59929888/106939534-65e7e500-6746-11eb-8287-f0cbab207c3b.jpg" width="250" heigth="500">           <img src="https://user-images.githubusercontent.com/59929888/106939600-7a2be200-6746-11eb-9e75-fa3dadd1a82c.jpg" width="250" heigth="500">   <img src="https://user-images.githubusercontent.com/59929888/106939664-8e6fdf00-6746-11eb-92d3-bf4bf1abcffc.jpg" width="250" heigth="500">    <img src="https://user-images.githubusercontent.com/59929888/106939724-a34c7280-6746-11eb-806c-d6440158b514.jpg" width="250" heigth="500">
+<img src="https://user-images.githubusercontent.com/59929888/106939724-a34c7280-6746-11eb-806c-d6440158b514.jpg" width="250" heigth="500">
+<img src="https://user-images.githubusercontent.com/59929888/106939488-57013280-6746-11eb-9a1b-56feb94a90b5.jpg" width="250" heigth="500">            <img src="https://user-images.githubusercontent.com/59929888/106939534-65e7e500-6746-11eb-8287-f0cbab207c3b.jpg" width="250" heigth="500">              
  
 
 #### Basic Features of the Application
